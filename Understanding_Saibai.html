@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saibai Island – Background (Vibrant Coastal)</title>
+<meta name="color-scheme" content="light dark">
+<style>
+:root{
+  --bg:#f3f8fc;--ink:#0f172a;--muted:#475569;--line:#e6eef5;--panel:#fff;
+  --sea:#0ea5e9;--deep:#2563eb;--reef:#14b8a6;--sun:#f59e0b;--rose:#fb7185;
+  --shadow:0 6px 26px rgba(15,23,42,.08);
+}
+:root[data-theme=dark]{
+  --bg:#0b1220;--ink:#e7eefc;--muted:#a9b4c9;--line:#24314f;--panel:#0f1730;
+  --sea:#22d3ee;--deep:#2563eb;--reef:#34d399;--sun:#fbbf24;--rose:#fb7185;
+  --shadow:0 6px 26px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);
+font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--sea)}html{scroll-behavior:smooth}
+.hero{position:sticky;top:0;z-index:10;background:
+  radial-gradient(1200px 500px at 15% -100px,rgba(255,255,255,.35),transparent 55%),
+  linear-gradient(90deg,var(--sea),var(--deep));color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
+  box-shadow:var(--shadow)}
+.bar{max-width:1200px;margin:0 auto;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.logo{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);
+border:1px solid rgba(255,255,255,.6)}.title{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.btn{appearance:none;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);
+color:#fff;padding:.5rem .7rem;border-radius:10px;font-weight:700;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.18)}
+.wrap{max-width:1200px;margin:0 auto;padding:16px 18px 28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+h2{margin:0 0 .6rem 0;font-size:1.32rem;border-bottom:3px solid var(--sea);padding-bottom:4px}
+.grid{display:grid;gap:16px;grid-template-columns:1.1fr .9fr}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-top:10px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:12px;background:linear-gradient(180deg,#fff,#f6fbff)}
+:root[data-theme=dark] .kpi{background:linear-gradient(180deg,#0f1730,#0f1838)}
+.kpi strong{display:block;font-size:1.25rem}.kpi small{color:var(--muted)}
+.note{border-left:4px solid var(--reef);padding-left:10px}.warn{border-left:4px solid var(--sun);padding-left:10px}
+.alert{border-left:4px solid var(--rose);padding-left:10px}.muted{color:var(--muted)}
+footer{color:var(--muted);text-align:center;margin-top:18px}
+main{padding-bottom:max(96px,env(safe-area-inset-bottom,24px))}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="bar">
+    <span class="logo" aria-hidden="true"></span>
+    <h1 class="title">Saibai Island — Background</h1>
+    <div class="actions">
+      <button class="btn" id="theme">Theme</button>
+      <button class="btn" id="print">Print</button>
+      <button class="btn" id="top">Top</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<section class="card">
+<h2>Community snapshot</h2>
+<div class="kpis">
+  <div class="kpi"><strong>≈ 340</strong><small>Koeybuway &amp; Moegibuway people</small></div>
+  <div class="kpi"><strong>85%</strong><small>Identify as Torres Strait Islander</small></div>
+  <div class="kpi"><strong>$3.70/L</strong><small>Diesel on Saibai vs $1.90 mainland</small></div>
+  <div class="kpi"><strong>&lt; 1 m</strong><small>Average elevation above sea level</small></div>
+</div>
+</section>
+
+<section class="card">
+<h2>Background</h2>
+<div class="grid">
+<div>
+<p>Saibai Island is only a few kilometres south of Papua New Guinea, home to about 340 Koeybuway and Moegibuway people, around 85% of whom identify as Torres Strait Islanders (ABS 2021). Despite its small population, the community faces major challenges in keeping power both clean and affordable.</p>
+
+<p>Electricity on Saibai currently comes entirely from a diesel-powered microgrid managed by Ergon Energy and overseen by the Torres Strait Island Regional Council (TSIRC) (Energy Queensland, 2022). Every drop of diesel must be shipped from Thursday Island or Cairns — bringing high transport costs, frequent delays and a heavy environmental footprint. By the time fuel reaches Saibai it costs about $3.70 per litre compared to $1.90 on the mainland (EWB 2024a). The result is a system that is expensive, inefficient and vulnerable to weather disruptions that can halt barge deliveries entirely.</p>
+
+<p>The island’s geography and climate compound these issues. Saibai is extremely flat and flood-prone — most of the land sits less than a metre above sea level. Each year, storm surges and king tides wash across the island, damaging buildings, fuel storage and electrical systems (TSIRC 2025). With so little dry ground available, the community already faces housing shortages — the Master Plan forecasts a need for 38 new homes within the next decade (TSIRC 2025). Ground-based solar farms simply don’t fit; they’d occupy land needed for housing or cultural purposes and require costly flood protection.</p>
+
+<p>Progress elsewhere offers some hope. Masig Island’s hybrid solar–diesel microgrid shows that renewables can work in remote islands (Mirabou Energy, 2023). Yet those systems still rely on fly-in contractors for maintenance — an approach that’s costly and unsustainable for Saibai long term. The solution must empower locals, avoid land competition and withstand flooding without interruption.</p>
+
+<p><strong>Floating solar technology</strong> addresses all three. Panels mounted on buoyant modular platforms anchored offshore draw natural cooling from seawater, improving efficiency while integrating with the existing diesel grid. The design cuts fuel transport dependency and protects precious land for homes and culture.</p>
+</div>
+
+<figure class="card">
+  <canvas id="dieselChart" aria-label="Diesel price comparison" role="img"></canvas>
+  <figcaption class="muted">Diesel price comparison – Saibai vs mainland.</figcaption>
+</figure>
+</div>
+
+<div class="note" style="margin-top:10px"><p><strong>Why floating solar?</strong> It offers reliability during flood events, reduces diesel freight and builds local technical capacity through training and ownership.</p></div>
+</section>
+
+<section class="card">
+<h2>Location map (illustrative)</h2>
+<svg viewBox="0 0 600 380" style="width:100%;border-radius:12px" role="img" aria-labelledby="mapTitle">
+<title id="mapTitle">Saibai Island and PNG proximity</title>
+<defs>
+  <linearGradient id="seaGrad" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#2563eb" stop-opacity=".55"/>
+  </linearGradient>
+</defs>
+<rect width="600" height="380" fill="url(#seaGrad)"/>
+<circle cx="455" cy="190" r="38" fill="#6ee7b7" stroke="#047857" stroke-width="2"/>
+<text x="455" y="180" text-anchor="middle" font-weight="700" font-size="16" fill="#053">Saibai</text>
+<rect x="420" y="10" width="130" height="40" fill="#6ee7b7" stroke="#047857"/>
+<text x="485" y="35" text-anchor="middle" font-weight="700" font-size="16" fill="#053">PNG</text>
+<text x="466" y="238" font-size="12" fill="#083344">≈ 4 km to PNG coast</text>
+</svg>
+</section>
+
+<footer>Vibrant Coastal single-file build. Theme toggle + print + smooth scroll enabled.</footer>
+</main>
+
+<script>
+const themeBtn=document.getElementById('theme');
+themeBtn.onclick=()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('bgTheme',next);
+};
+const saved=localStorage.getItem('bgTheme');if(saved)document.documentElement.setAttribute('data-theme',saved);
+document.getElementById('print').onclick=()=>window.print();
+document.getElementById('top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+/* mini bar chart */
+function drawBar(id,labs,vals){
+ const c=document.getElementById(id);if(!c)return;
+ const ctx=c.getContext('2d'),W=c.clientWidth||600,H=260;
+ c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio);
+ const max=Math.max(...vals)*1.2,base=220,bw=160,gap=120,start=(W-(bw*2+gap))/2;
+ [220,180,140,100].forEach(y=>{ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--line');
+ ctx.beginPath();ctx.moveTo(60,y);ctx.lineTo(W-30,y);ctx.stroke();});
+ vals.forEach((v,i)=>{const x=start+i*(bw+gap),h=(v/max)*(base-60),y=base-h,r=10;
+ const grad=ctx.createLinearGradient(0,y,0,base);
+ grad.addColorStop(0,i? '#14b8a6':'#fb7185');grad.addColorStop(1,i? '#6ee7b7':'#fca5a5');
+ ctx.beginPath();ctx.moveTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.lineTo(x+bw-r,y);
+ ctx.arcTo(x+bw,y,x+bw,y+r,r);ctx.lineTo(x+bw,base);ctx.lineTo(x,base);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+ ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--ink');ctx.font='bold 14px system-ui';ctx.textAlign='center';
+ ctx.fillText('$'+v.toFixed(2)+'/L',x+bw/2,y-6);ctx.font='12px system-ui';ctx.fillText(labs[i],x+bw/2,base+18);});
+}
+drawBar('dieselChart',['Saibai diesel','Mainland diesel'],[3.70,1.90]);
+</script>
+</body>
+</html>

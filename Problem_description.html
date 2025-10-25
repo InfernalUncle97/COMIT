@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saibai Island — Floating Solar (Vibrant Coastal)</title>
+<meta name="color-scheme" content="light dark">
+<style>
+  /* ===== Design tokens ===== */
+  :root{
+    --bg:#f3f8fc; --ink:#0f172a; --muted:#475569; --line:#e6eef5; --panel:#ffffff;
+    --sea:#0ea5e9; --deep:#2563eb; --reef:#14b8a6; --sun:#f59e0b; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(15,23,42,.08);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1220; --ink:#e7eefc; --muted:#a9b4c9; --line:#24314f; --panel:#0f1730;
+    --sea:#22d3ee; --deep:#2563eb; --reef:#34d399; --sun:#fbbf24; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--sea)}
+  html{scroll-behavior:smooth}
+
+  /* ===== App shell ===== */
+  .hero{
+    position:sticky;top:0;z-index:40;
+    background:
+      radial-gradient(1200px 500px at 15% -100px, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(90deg,var(--sea),var(--deep));
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow)
+  }
+  .bar{max-width:1200px;margin:0 auto;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+  .logo{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);border:1px solid rgba(255,255,255,.6)}
+  .title{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);line-height:1}
+  .actions{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+  .btn{appearance:none;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);
+       color:#fff;padding:.5rem .7rem;border-radius:10px;font-weight:700;cursor:pointer}
+  .btn:hover{background:rgba(255,255,255,.18)}
+  .wrap{max-width:1200px;margin:0 auto;padding:16px 18px 28px}
+
+  /* ===== Tab row (section jumpers) ===== */
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0 0}
+  .tab{background:#fff1;border:1px solid #fff6;color:#fff;padding:.45rem .7rem;border-radius:999px;
+       text-decoration:none;font-weight:700}
+  .tab.active{background:#fff;color:#0c2440}
+
+  /* ===== Content cards ===== */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .section{margin-top:16px}
+  .section h2{margin:0 0 .6rem 0;font-size:1.32rem;border-bottom:3px solid var(--sea);padding-bottom:4px}
+  .muted{color:var(--muted)}
+
+  /* ===== Grid helpers ===== */
+  .grid{display:grid;gap:16px;grid-template-columns:1.15fr .85fr}
+  .cols{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
+  .span-8{grid-column:span 8}.span-4{grid-column:span 4}
+  .three{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr}
+    .span-8,.span-4{grid-column:span 12}
+    .three{grid-template-columns:1fr}
+  }
+
+  /* ===== KPI chips ===== */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-top:10px}
+  .kpi{border:1px solid var(--line);border-radius:14px;padding:12px;background:linear-gradient(180deg,#fff,#f6fbff)}
+  :root[data-theme="dark"] .kpi{background:linear-gradient(180deg,#0f1730,#0f1838)}
+  .kpi strong{display:block;font-size:1.28rem}
+  .kpi small{color:var(--muted)}
+
+  /* ===== Notes / callouts ===== */
+  .note{border-left:4px solid var(--reef);padding-left:10px}
+  .warn{border-left:4px solid var(--sun);padding-left:10px}
+  .alert{border-left:4px solid var(--rose);padding-left:10px}
+
+  /* ===== Gallery placeholders (swap with <img>) ===== */
+  .ph{display:grid;place-items:center;aspect-ratio:16/10;background:
+      linear-gradient(135deg,rgba(20,184,166,.12),rgba(14,165,233,.10)),
+      repeating-linear-gradient(90deg,rgba(15,23,42,.06) 0 3px,transparent 3px 8px);
+      border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center;padding:10px}
+
+  /* ===== Footer / spacing ===== */
+  footer{color:var(--muted);text-align:center;margin-top:18px}
+  main{padding-bottom:max(96px,env(safe-area-inset-bottom,24px))}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header class="hero" id="top">
+  <div class="bar">
+    <span class="brand"><span class="logo" aria-hidden="true"></span> Community Energy — Saibai</span>
+    <h1 class="title">Floating Solar — Saibai Island</h1>
+    <div class="actions">
+      <button class="btn" id="btn-theme" aria-pressed="false" title="Toggle light/dark">Theme</button>
+      <button class="btn" id="btn-print" title="Print / Save as PDF">Print</button>
+      <button class="btn" id="btn-expand" title="Expand all callouts">Expand</button>
+      <button class="btn" id="btn-collapse" title="Collapse all callouts">Collapse</button>
+      <button class="btn" id="btn-top" title="Back to top">Top</button>
+    </div>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" data-nav href="#diesel">Diesel Dependence</a>
+      <a class="tab" data-nav href="#land">Landscape Constraints</a>
+      <a class="tab" data-nav href="#precedent">Precedent Projects</a>
+      <a class="tab" data-nav href="#fpv">Floating Solar Solution</a>
+      <a class="tab" data-nav href="#figures">Figures</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- KPIs (you can edit these numbers later) -->
+  <section class="card">
+    <div class="kpis">
+      <div class="kpi"><strong>$3.70/L</strong><small>Indicative diesel price on-island</small></div>
+      <div class="kpi"><strong>$1.90/L</strong><small>Mainland diesel (reference)</small></div>
+      <div class="kpi"><strong>7 days</strong><small>Target battery autonomy (critical loads)</small></div>
+      <div class="kpi"><strong>Modular</strong><small>Scale pilot → community rollout</small></div>
+    </div>
+  </section>
+
+  <!-- Diesel Dependence -->
+  <section id="diesel" class="section card">
+    <h2>Current diesel dependence</h2>
+    <div class="grid">
+      <div>
+        <p>The current underlying dependence on diesel places a major strain on both the community of Saibai Island and the Torres Strait Regional Council (TSIRC). Keeping generators running has proven expensive for residents as costs fall back on the community through higher costs of living. Deliveries are another problem for the current system. During cyclone season or king tides, barges often can’t dock safely for supplies — especially fuel. When this happens, houses, schools and health care can lose power for days and even weeks. This is not only inconvenient; it can mean food spoiling, medical fridges warming and digital communication dropping altogether as the island has become increasingly reliant on energy in recent decades.</p>
+      </div>
+      <figure class="card">
+        <canvas id="dieselChart" aria-label="Diesel price comparison" role="img"></canvas>
+        <figcaption class="muted">Saibai diesel vs mainland diesel — indicative comparison.</figcaption>
+      </figure>
+    </div>
+    <div class="three" style="margin-top:10px">
+      <details class="card alert"><summary><strong>Reliability risks</strong></summary><p>Fuel delivery disruption cascades into power outages that affect households, schools, clinics and communications.</p></details>
+      <details class="card warn"><summary><strong>Affordability</strong></summary><p>Freight costs and fly-in servicing elevate the effective cost per kWh for residents.</p></details>
+      <details class="card note"><summary><strong>Resilience need</strong></summary><p>Longer autonomy and lower fuel reliance reduce outage risk during extreme weather.</p></details>
+    </div>
+  </section>
+
+  <!-- Landscape Constraints -->
+  <section id="land" class="section card">
+    <h2>Saibai’s landscape constraints</h2>
+    <div class="grid">
+      <div>
+        <p>Saibai’s landscape makes this situation even harder to manage. Most of the island sits barely above sea level, so every high tide or heavy rain carries the risk of flooding. There’s simply not enough elevated ground to build new infrastructure, and the small amount of dry land that does exist is already needed for homes and community buildings.</p>
+      </div>
+      <figure class="card" aria-label="Illustrative map of Saibai proximity to PNG">
+        <svg viewBox="0 0 600 380" role="img" aria-labelledby="mapTitle">
+          <title id="mapTitle">Saibai & PNG proximity (illustrative)</title>
+          <defs>
+            <linearGradient id="seaGrad" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#2563eb" stop-opacity=".55"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="600" height="380" fill="url(#seaGrad)"/>
+          <circle cx="455" cy="190" r="38" fill="#6ee7b7" stroke="#047857" stroke-width="2"/>
+          <text x="455" y="180" text-anchor="middle" font-weight="700" font-size="16" fill="#053">Saibai</text>
+          <rect x="420" y="10" width="130" height="40" fill="#6ee7b7" stroke="#047857"/>
+          <text x="485" y="35" text-anchor="middle" font-weight="700" font-size="16" fill="#053">PNG</text>
+          <text x="466" y="238" font-size="12" fill="#083344">≈ 4 km to PNG</text>
+        </svg>
+        <figcaption class="muted">Low-lying and flood-prone — land is prioritised for housing and community buildings.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Precedent -->
+  <section id="precedent" class="section card">
+    <h2>What precedent projects show</h2>
+    <p>Attempts to bring solar into other Torres Strait communities, like on Masig Island, show both the promise and the limits of renewable projects. The technology works, but the systems still depend on outside contractors to maintain them. Because of that, local people don’t always get the chance to develop the technical skills or decision-making control needed to run the systems themselves.</p>
+    <div class="three" style="margin-top:10px">
+      <div class="card note"><p><strong>Works:</strong> Hybrid solar-diesel can reduce fuel use and emissions.</p></div>
+      <div class="card warn"><p><strong>Gap:</strong> Ongoing dependence on fly-in technicians.</p></div>
+      <div class="card note"><p><strong>Opportunity:</strong> Build community governance and maintenance capability.</p></div>
+    </div>
+  </section>
+
+  <!-- FPV Solution -->
+  <section id="fpv" class="section card">
+    <h2>A floating solar solution for Saibai</h2>
+    <div class="cols">
+      <figure class="span-8">
+        <canvas id="mixChart" aria-label="Illustrative post-FPV energy mix" role="img"></canvas>
+        <figcaption class="muted">Illustrative mix (adjust % to match your modelling).</figcaption>
+      </figure>
+      <div class="span-4">
+        <details class="card note"><summary><strong>How it fits</strong></summary>
+          <ul>
+            <li>Panels on floating platforms moored just offshore — flooding and land scarcity are no longer blockers.</li>
+            <li>Integrates with the diesel microgrid for continuity of supply.</li>
+            <li>Preserves land for housing and cultural uses.</li>
+          </ul>
+        </details>
+        <details class="card note" style="margin-top:10px;"><summary><strong>Community-led</strong></summary>
+          <ul>
+            <li>Local rangers and younger residents trained to maintain the system.</li>
+            <li>Clean energy linked with local employment and cultural responsibility.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="three" style="margin-top:12px">
+      <div class="card note">
+        <p><strong>Autonomy</strong><br>Energy stored in battery banks can power critical infrastructure — schools, clinics and community centres — for up to a week when barges can’t reach the island.</p>
+      </div>
+      <div class="card note">
+        <p><strong>Modularity</strong><br>Start with a pilot raft to validate performance and operations, then scale in stages.</p>
+      </div>
+      <div class="card note">
+        <p><strong>Governance</strong><br>Elder-led community energy board to direct priorities, training and procurement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Figures / Gallery -->
+  <section id="figures" class="section card">
+    <h2>Figures &amp; visuals</h2>
+    <div class="three">
+      <!-- Replace any with real images when ready -->
+      <div class="ph">Floating solar raft — pilot size</div>
+      <div class="ph">Battery enclosure concept</div>
+      <div class="ph">Mooring &amp; anchor layout</div>
+    </div>
+  </section>
+
+  <footer>Single-file build. Buttons: theme, print, expand/collapse, top. Charts: Canvas (no libraries).</footer>
+</main>
+
+<script>
+/* ===== Helpers ===== */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* Tabs highlight on scroll */
+const tabs = $$('.tab[data-nav]');
+const sections = tabs.map(t => document.querySelector(t.getAttribute('href')));
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id = '#' + e.target.id;
+      tabs.forEach(t=>t.classList.toggle('active', t.getAttribute('href')===id));
+      history.replaceState(null,'',id);
+    }
+  });
+},{rootMargin:'-50% 0px -45% 0px', threshold:0});
+sections.forEach(s=>obs.observe(s));
+
+/* Buttons */
+$('#btn-print').addEventListener('click', ()=>window.print());
+$('#btn-top').addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Theme toggle (persist) */
+const key='saibai-theme';
+const setTheme = v => { document.documentElement.setAttribute('data-theme',v); localStorage.setItem(key,v); };
+const saved = localStorage.getItem(key); if(saved) setTheme(saved);
+$('#btn-theme').addEventListener('click', ()=>{
+  const next = (document.documentElement.getAttribute('data-theme')==='dark') ? 'light':'dark';
+  setTheme(next);
+  $('#btn-theme').setAttribute('aria-pressed', String(next==='dark'));
+});
+
+/* Expand / collapse all callouts (<details>) */
+const allDetails = ()=>$$('details');
+$('#btn-expand').addEventListener('click', ()=> allDetails().forEach(d=>d.open=true));
+$('#btn-collapse').addEventListener('click', ()=> allDetails().forEach(d=>d.open=false));
+
+/* ===== Charts (Canvas, no libraries) ===== */
+function drawBar(canvasId, labels, values){
+  const c = document.getElementById(canvasId);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const clientW = c.clientWidth || 640;
+  const H = 260;
+  c.width = clientW * devicePixelRatio;
+  c.height = H * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const pad = 60, baseY = 220, max = Math.max(...values) * 1.25;
+  // grid lines
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--line');
+  [220,180,140,100].forEach(y=>{ctx.beginPath();ctx.moveTo(60,y);ctx.lineTo(clientW-30,y);ctx.stroke();});
+  // bars
+  const bw = 160, gap = 120, startX = (clientW - (bw*2 + gap))/2;
+  values.forEach((v,i)=>{
+    const x = startX + i*(bw+gap);
+    const h = (v/max) * (baseY - 60);
+    const grad = ctx.createLinearGradient(0, baseY-h, 0, baseY);
+    if(i===0){ grad.addColorStop(0, '#fb7185'); grad.addColorStop(1, '#fca5a5'); }
+    else     { grad.addColorStop(0, '#14b8a6'); grad.addColorStop(1, '#6ee7b7'); }
+    const y = baseY - h, r = 10;
+    ctx.beginPath();
+    ctx.moveTo(x, y+r);
+    ctx.arcTo(x, y, x+r, y, r);
+    ctx.lineTo(x+bw-r, y);
+    ctx.arcTo(x+bw, y, x+bw, y+r, r);
+    ctx.lineTo(x+bw, baseY);
+    ctx.lineTo(x, baseY);
+    ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink');
+    ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + bw/2, baseY + 18);
+    ctx.font = 'bold 14px system-ui';
+    ctx.fillText('$'+v.toFixed(2)+'/L', x + bw/2, y - 6);
+  });
+}
+function drawDonut(canvasId, segments){
+  const c = document.getElementById(canvasId);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const clientW = c.clientWidth || 640;
+  const H = 260;
+  c.width = clientW * devicePixelRatio;
+  c.height = H * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const cx = clientW/2 - 80, cy = H/2, r = Math.min(120, cy-20);
+  const total = segments.reduce((a,s)=>a+s.value,0);
+  let a0 = -Math.PI/2;
+  const cols = ['#fb7185','#22d3ee','#34d399','#f59e0b'];
+  segments.forEach((s,i)=>{
+    const a1 = a0 + (s.value/total)*Math.PI*2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,a0,a1); ctx.closePath();
+    ctx.fillStyle = cols[i%cols.length]; ctx.fill(); a0 = a1;
+  });
+  // inner hole
+  ctx.globalCompositeOperation='destination-out';
+  ctx.beginPath(); ctx.arc(cx,cy,r*0.6,0,Math.PI*2); ctx.fill();
+  ctx.globalCompositeOperation='source-over';
+  // legend
+  ctx.font='14px system-ui'; ctx.textAlign='left';
+  let lx = cx + r + 30, ly = cy - 30;
+  segments.forEach((s,i)=>{
+    ctx.fillStyle = cols[i%cols.length]; ctx.fillRect(lx, ly-10, 14, 14);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink');
+    ctx.fillText(`${s.label} (${s.value}%)`, lx + 22, ly);
+    ly += 22;
+  });
+}
+/* Draw with default illustrative numbers (edit as needed) */
+drawBar('dieselChart', ['Saibai diesel', 'Mainland diesel'], [3.70, 1.90]);
+drawDonut('mixChart', [
+  {label:'Diesel', value:60},
+  {label:'FPV', value:30},
+  {label:'Battery', value:10}
+]);
+</script>
+</body>
+</html>
