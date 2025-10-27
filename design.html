@@ -335,241 +335,168 @@
     <h2>Selected Design</h2>
     <p>Based on the decision matrix and criteria evaluation, the <strong>Floating Solar System</strong> was selected as the final design to be developed. This system uses 10×10&nbsp;m HDPE floating platforms with solar panels and a dual battery/converter unit mounted on stilts near shore. It provides a clean, flood-resilient, and community-managed solution that preserves land for housing and cultural use while ensuring reliable power generation.</p>
   </section>
+<!-- =========================
+     DETAILED DESIGN (on-brand)
+     ========================= -->
+<section id="detailed-design" class="section card dd">
+  <!-- Title + hero image -->
+  <header class="dd-head">
+    <h2>Detailed Design</h2>
+    <figure class="dd-hero">
+      <!-- Replace with your diagram image (the isometric system sketch) -->
+      <img src="design4.png" alt="Floating Solar Power System — simplified diagram" style="background-color: #0b1220;">
+    </figure>
+  </header>
 
-<!-- ===================== DETAIL: INTERACTIVE DIAGRAM + ENERGY FLOW ===================== -->
-<section class="section card" id="detail-interact">
-  <h2>Detailed Design — Interactive</h2>
+  <!-- Two-column layout: components as compact cards -->
+  <div class="dd-grid">
+    <div class="dd-col">
+      <h3 class="dd-sub">System components</h3>
 
-  <!-- ===== 1) Annotated Exploded Diagram ===== -->
-  <div class="diagram">
-    <header class="di-head">
-      <strong>System Diagram</strong>
-      <span class="muted">Scroll/touch to zoom · drag to pan · click labels</span>
-      <div class="di-zoom">
-        <button class="btn-lite" data-zoom="-">–</button>
-        <button class="btn-lite" data-zoom="+">+</button>
-        <button class="btn-lite" data-zoom="1">100%</button>
-      </div>
-    </header>
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 7h18v10H3zM5 5h14M5 19h14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>PV modules</h4>
+          <p>Panels mounted on the floating frame convert sunlight to DC. Natural seawater cooling helps efficiency on hot days.</p>
+        </div>
+      </article>
 
-    <div class="di-stage" aria-label="Exploded system diagram" role="region">
-      <img class="di-img" src="design4.png" alt="Floating solar system diagram">
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 16l8-9 8 9M4 16h16M8 16v4m8-4v4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>Floating platform</h4>
+          <p>HDPE floats with aluminium frame. Buoyant, UV-resistant and designed for cyclone conditions.</p>
+        </div>
+      </article>
 
-      <!-- Hotspots: position with left/top in percentages so it scales with the image -->
-      <button class="hotspot" style="left:43%;top:52%" data-title="PV Modules"
-        data-body="Panels mounted on the floating frame. Seawater cooling improves efficiency compared to land arrays.">1</button>
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 7h14v10H5zM9 7v10M15 7v10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>Junction box</h4>
+          <p>Collects DC from strings, adds isolation and surge protection before the sub-sea export.</p>
+        </div>
+      </article>
 
-      <button class="hotspot" style="left:34%;top:70%" data-title="Floating Platform"
-        data-body="HDPE floats with aluminium superstructure; buoyant, UV-resistant, cyclone-ready.">2</button>
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 12c5 0 5-6 9-6s4 12 9 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>Submarine cable</h4>
+          <p>Armoured and marine-rated DC cable from the array to shore; UV-resistant and wet-mate compatible.</p>
+        </div>
+      </article>
 
-      <button class="hotspot" style="left:54%;top:78%" data-title="Junction Box"
-        data-body="Collects DC from strings; surge protection and isolation before sub-sea export.">3</button>
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 12h6m4 0h6M10 6v12m4-12v12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>Power converter &amp; dual battery</h4>
+          <p>Mounted on stilts above flood levels. Converts DC→AC for the microgrid and manages two battery banks for autonomy.</p>
+        </div>
+      </article>
 
-      <button class="hotspot" style="left:66%;top:65%" data-title="Submarine Cable"
-        data-body="Armoured, UV-resistant, wet-mate rated; carries DC ashore to the converter.">4</button>
-
-      <button class="hotspot" style="left:73%;top:33%" data-title="Power Converter (onshore)"
-        data-body="DC-AC conversion, protection &amp; telemetry; feeds the microgrid and charges the batteries.">5</button>
-
-      <button class="hotspot" style="left:40%;top:84%" data-title="Anchors &amp; Moorings"
-        data-body="Catenary or taut moorings sized for tides, surge and wave climate; keeps array aligned to the sun.">6</button>
+      <article class="dd-item">
+        <span class="dd-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 20l4-3 4 2 8-6-4-2-8 6-4-2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <div class="dd-body">
+          <h4>Moorings &amp; anchors</h4>
+          <p>Catenary or taut systems sized for tides and surge; holds orientation while allowing safe movement.</p>
+        </div>
+      </article>
     </div>
 
-    <aside class="di-panel" aria-live="polite">
-      <h3 id="di-title">Tap a label</h3>
-      <p class="muted" id="di-body">Hover/click a numbered tag to see details.</p>
-      <details class="note" open>
-        <summary><strong>Tip:</strong> How to read</summary>
-        <p>Start at the panels (1), follow DC through the junction box (3) into the submarine cable (4) and onto the onshore converter (5).</p>
-      </details>
-    </aside>
-  </div>
+    <!-- Energy flow summary with soft timeline -->
+    <div class="dd-col">
+      <h3 class="dd-sub">Energy flow (overview)</h3>
 
-  <!-- ===== 2) Energy Flow — Guided Stepper ===== -->
-  <div class="flow">
-    <header class="di-head">
-      <strong>Energy Flow Summary</strong>
-      <span class="muted">Follow the numbered steps</span>
-    </header>
+      <ol class="dd-steps">
+        <li><span>1</span> Sunlight hits the PV modules.</li>
+        <li><span>2</span> Modules convert sunlight to <strong>DC</strong>.</li>
+        <li><span>3</span> Junction box gathers and conditions the <strong>DC</strong>.</li>
+        <li><span>4</span> Submarine cable transmits <strong>DC</strong> to shore.</li>
+        <li><span>5</span> Converter transforms <strong>DC → AC</strong> for the grid.</li>
+        <li><span>6</span> Dual battery stores excess energy for later use.</li>
+        <li><span>7</span> <strong>AC</strong> power supplies the island network.</li>
+      </ol>
 
-    <div class="flow-grid">
-      <figure class="flow-fig">
-        <img class="flow-img" src="des" alt="Energy flow overview">
-        <!-- Overlays that light up per step (coords in %) -->
-        <span class="pin" style="left:28%;top:40%" data-step="1">1</span>
-        <span class="pin" style="left:40%;top:48%" data-step="2">2</span>
-        <span class="pin" style="left:52%;top:64%" data-step="3">3</span>
-        <span class="pin" style="left:68%;top:58%" data-step="4">4</span>
-        <span class="pin" style="left:80%;top:32%" data-step="5">5</span>
-        <span class="pin" style="left:86%;top:44%" data-step="6">6</span>
-        <span class="pin" style="left:90%;top:54%" data-step="7">7</span>
+      <figure class="dd-flow">
+        <!-- Replace with your energy-flow graphic -->
+        <img src="design6.png" alt="Energy flow diagram from panels to island network">
       </figure>
 
-      <div class="flow-steps">
-        <ol id="flowList">
-          <li data-step="1"><strong>Sunlight</strong> makes contact with the PV modules.</li>
-          <li data-step="2">The PV modules convert sunlight into <strong>DC</strong> electricity.</li>
-          <li data-step="3">The junction box gathers <strong>DC</strong> and sends it through the submarine cable.</li>
-          <li data-step="4">The onshore converter receives the <strong>DC</strong> electricity.</li>
-          <li data-step="5">The converter transforms <strong>DC → AC</strong> for the grid.</li>
-          <li data-step="6">The dual-battery system stores excess energy for later use.</li>
-          <li data-step="7"><strong>AC</strong> power is distributed to the island’s network.</li>
-        </ol>
-        <div class="stepper">
-          <button class="btn-lite" data-prev>Prev</button>
-          <div class="dots" id="flowDots" aria-hidden="true"></div>
-          <button class="btn-lite" data-next>Next</button>
-        </div>
+      <div class="dd-notes">
+        <div class="dd-chip">Flood-ready siting (converter on stilts)</div>
+        <div class="dd-chip">Modular expansion</div>
+        <div class="dd-chip">Low land take</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== Scoped styles so we don’t disturb your global CSS ===== -->
 <style>
-/* --- local styles for this block (inherit your tokens) --- */
-#detail-interact .di-head{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:12px}
-#detail-interact .btn-lite{appearance:none;border:1px solid var(--line);background:var(--panel);padding:.45rem .65rem;border-radius:10px;cursor:pointer;font-weight:700}
-#detail-interact .btn-lite:hover{background:#f8fbff}
-#detail-interact .di-zoom{display:flex;gap:8px}
+/* colours come from your existing tokens */
+.dd h2{margin:0 0 .6rem 0;font-size:1.8rem;border-bottom:3px solid var(--sea);padding-bottom:4px}
+.dd-sub{margin:.6rem 0 .6rem 0;color:var(--muted);font-weight:700}
 
-.diagram{display:grid;gap:16px;grid-template-columns:1.25fr .75fr}
-@media (max-width:1000px){.diagram{grid-template-columns:1fr}}
-.di-stage{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#fff,#f6fbff)}
-:root[data-theme="dark"] .di-stage{background:linear-gradient(180deg,#0f1730,#0f1838)}
-.di-img{display:block;max-width:100%;height:auto;transform-origin:0 0;user-select:none;touch-action:none;cursor:grab}
-.di-stage.dragging .di-img{cursor:grabbing}
+.dd-head{display:grid;gap:16px}
+.dd-hero{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:var(--shadow)}
+.dd-hero img{display:block;width:100%;height:auto}
 
-.hotspot{position:absolute;transform:translate(-50%,-50%);
-  width:28px;height:28px;border-radius:50%;border:none;color:#fff;font-weight:800;cursor:pointer;
-  background:linear-gradient(135deg,#22d3ee,#2563eb);box-shadow:0 4px 10px rgba(0,0,0,.2)}
-.hotspot:focus-visible{outline:3px solid var(--reef)}
+.dd-grid{display:grid;gap:16px;grid-template-columns:1.1fr .9fr}
+@media (max-width:980px){.dd-grid{grid-template-columns:1fr}}
 
-.di-panel{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--panel);box-shadow:var(--shadow)}
-.di-panel h3{margin:.2rem 0}
+.dd-col{display:grid;gap:12px}
 
-.flow .flow-grid{display:grid;gap:16px;grid-template-columns:1.15fr .85fr}
-@media (max-width:1000px){.flow .flow-grid{grid-template-columns:1fr}}
-.flow-fig{position:relative;margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
-.flow-img{display:block;width:100%;height:auto}
-.pin{position:absolute;transform:translate(-50%,-50%);
-  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
-  background:#0ea5e9;color:#fff;font-weight:900;box-shadow:0 6px 18px rgba(14,165,233,.35);opacity:.55;transition:opacity .2s, transform .2s}
-.pin.active{opacity:1;transform:translate(-50%,-50%) scale(1.06);background:#14b8a6}
+.dd-item{display:grid;grid-template-columns:44px 1fr;gap:10px;
+  background:linear-gradient(180deg,#fff,#f6fbff);border:1px solid var(--line);
+  border-radius:12px;padding:12px}
+:root[data-theme="dark"] .dd-item{background:linear-gradient(180deg,#0f1730,#0f1838)}
+.dd-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(52,211,153,.18)); color:var(--deep)}
+.dd-ico svg{width:24px;height:24px}
+.dd-body h4{margin:0 0 2px 0;font-size:1rem}
+.dd-body p{margin:0;color:var(--muted);font-size:.95rem}
 
-.flow-steps ol{margin:0;padding-left:20px;display:grid;gap:10px}
-.flow-steps li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;list-style:decimal}
-.flow-steps li.active{border-color:#22d3ee;box-shadow:0 0 0 3px rgba(34,211,238,.15)}
-.stepper{display:flex;align-items:center;gap:10px;margin-top:10px}
-.dots{display:flex;gap:6px;flex:1;justify-content:center}
-.dots i{width:8px;height:8px;border-radius:999px;background:var(--line)}
-.dots i.on{background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.18);}
+.dd-steps{counter-reset:s;display:grid;gap:8px;margin:2px 0 6px 0;padding:0}
+.dd-steps li{list-style:none;display:flex;gap:10px;align-items:flex-start;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
+.dd-steps li span{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:999px;
+  font-weight:800;color:#fff;background:linear-gradient(135deg,#22d3ee,#34d399); box-shadow:0 3px 10px rgba(34,211,238,.25)}
+.dd-steps strong{color:var(--ink)}
 
-.note{margin-top:10px}
+.dd-flow{margin:6px 0 2px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.dd-flow img{display:block;width:100%;height:auto}
+
+.dd-notes{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.dd-chip{border:1px solid var(--line);background:var(--panel);padding:.35rem .6rem;border-radius:999px;font-weight:700}
+
+@media (prefers-reduced-motion:no-preference){
+  .dd-item,.dd-steps li,.dd-hero,.dd-flow{animation:dd-fade .6s ease both; transform-origin:top left}
+  .dd-item:nth-child(2){animation-delay:.04s}
+  .dd-item:nth-child(3){animation-delay:.08s}
+  .dd-item:nth-child(4){animation-delay:.12s}
+  .dd-item:nth-child(5){animation-delay:.16s}
+  .dd-item:nth-child(6){animation-delay:.2s}
+  .dd-steps li:nth-child(1){animation-delay:.02s}
+  .dd-steps li:nth-child(2){animation-delay:.06s}
+  .dd-steps li:nth-child(3){animation-delay:.10s}
+  .dd-steps li:nth-child(4){animation-delay:.14s}
+  .dd-steps li:nth-child(5){animation-delay:.18s}
+  .dd-steps li:nth-child(6){animation-delay:.22s}
+  .dd-steps li:nth-child(7){animation-delay:.26s}
+}
+@keyframes dd-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 </style>
-
-<script>
-/* ========= 1) Zoom/Pan + Hotspots ========= */
-(function(){
-  const stage = document.querySelector('.di-stage');
-  const img   = stage.querySelector('.di-img');
-  const panelT = document.getElementById('di-title');
-  const panelB = document.getElementById('di-body');
-
-  let scale = 1, minS = 1, maxS = 3;
-  let ox = 0, oy = 0;       // current offset
-  let sx = 0, sy = 0;       // drag start
-  let dragging = false;
-
-  function apply(){ img.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`; }
-  function clamp(){
-    // keep within bounds
-    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
-    const vw = stage.clientWidth, vh = stage.clientHeight;
-    const maxX = Math.max(0,(w - vw)/2), maxY = Math.max(0,(h - vh)/2);
-    ox = Math.max(-maxX, Math.min(maxX, ox));
-    oy = Math.max(-maxY, Math.min(maxY, oy));
-  }
-  // wheel zoom
-  stage.addEventListener('wheel', e=>{
-    e.preventDefault();
-    const dir = Math.sign(e.deltaY)*-1;
-    const prev = scale;
-    scale = Math.max(minS, Math.min(maxS, scale + dir*0.15));
-    // zoom towards cursor
-    const rect = stage.getBoundingClientRect();
-    const cx = e.clientX - rect.left - stage.clientWidth/2;
-    const cy = e.clientY - rect.top  - stage.clientHeight/2;
-    ox = (ox - cx) * (scale/prev) + cx;
-    oy = (oy - cy) * (scale/prev) + cy;
-    clamp(); apply();
-  }, {passive:false});
-
-  // buttons
-  document.querySelectorAll('.di-zoom .btn-lite').forEach(b=>{
-    b.addEventListener('click', ()=>{
-      const t = b.getAttribute('data-zoom');
-      if(t==='+') scale = Math.min(maxS, scale+0.2);
-      else if(t==='-') scale = Math.max(minS, scale-0.2);
-      else scale = 1, ox = oy = 0;
-      clamp(); apply();
-    });
-  });
-
-  // drag to pan
-  stage.addEventListener('pointerdown', e=>{
-    stage.classList.add('dragging');
-    dragging = true; sx = e.clientX - ox; sy = e.clientY - oy; stage.setPointerCapture(e.pointerId);
-  });
-  stage.addEventListener('pointermove', e=>{
-    if(!dragging) return;
-    ox = e.clientX - sx; oy = e.clientY - sy; clamp(); apply();
-  });
-  stage.addEventListener('pointerup', e=>{
-    dragging = false; stage.classList.remove('dragging'); stage.releasePointerCapture(e.pointerId);
-  });
-
-  // hotspots
-  stage.querySelectorAll('.hotspot').forEach(h=>{
-    h.addEventListener('click', ()=>{
-      panelT.textContent = h.dataset.title;
-      panelB.textContent = h.dataset.body;
-      stage.querySelectorAll('.hotspot').forEach(x=>x.style.outline='none');
-      h.style.outline = '3px solid rgba(34,211,238,.45)';
-    });
-  });
-})();
-
-/* ========= 2) Energy Flow stepper ========= */
-(function(){
-  const list = document.getElementById('flowList');
-  const items = Array.from(list.querySelectorAll('li'));
-  const pins = Array.from(document.querySelectorAll('.pin'));
-  const dots = document.getElementById('flowDots');
-  let idx = 0;
-
-  // build dots
-  for(let i=0;i<items.length;i++){
-    const d=document.createElement('i'); dots.appendChild(d);
-  }
-  const dotEls = Array.from(dots.children);
-
-  function setActive(i){
-    idx = Math.max(0, Math.min(items.length-1, i));
-    items.forEach(li=>li.classList.toggle('active', Number(li.dataset.step)-1===idx));
-    pins.forEach(p=>p.classList.toggle('active', Number(p.dataset.step)-1===idx));
-    dotEls.forEach((d,j)=>d.classList.toggle('on', j<=idx));
-    // scroll into view on small screens
-    items[idx].scrollIntoView({block:'nearest', behavior:'smooth'});
-  }
-  setActive(0);
-
-  document.querySelector('[data-next]').addEventListener('click', ()=>setActive(idx+1));
-  document.querySelector('[data-prev]').addEventListener('click', ()=>setActive(idx-1));
-  pins.forEach(p=>p.addEventListener('click', ()=>setActive(Number(p.dataset.step)-1)));
-  items.forEach(li=>li.addEventListener('click', ()=>setActive(Number(li.dataset.step)-1)));
-})();
-</script>
-
 
 </main>
 
@@ -617,7 +544,9 @@ const obs = new IntersectionObserver(entries=>{
 sections.forEach(s=>obs.observe(s));
 
 /* ============== Matrix totals + Confetti celebration ============== */
-
+const tbody = $('#dmatrix tbody');
+const weightsPanel = $('#weightsPanel');
+let lastWinner = null;
 
 $$('#dmatrix tbody tr').forEach((row, idx)=>{
   const name = row.getAttribute('data-crit');
@@ -808,3 +737,54 @@ addEventListener('resize', ()=>drawRadar({labels:[],weights:[],gs:[],hm:[],fs:[]
 </script>
 </body>
 </html>
+<!-- =========================
+< =========================
+         FOOTER SECTION
+     ========================= -->
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div class="footer-left">
+      <h3>Saibai Island Renewable Energy Project</h3>
+      <p>Design Area 4.1 – Clean, affordable energy for small coastal urban environments</p>
+    </div>
+
+    <!-- Links in your requested order + labels -->
+    <nav class="footer-links" aria-label="Site footer">
+      <a href="detail.html">Project Brief</a>
+      <a href="executive_summary.html">Executive Summary</a>
+      <a href="Understanding_Saibai.html">Understanding saibai</a>
+      <a href="prototyping.html">Prototype</a>
+      <a href="implementation_plan.html">Implementation Plan</a>
+      <a href="cost_analysis.html">Cost Analysis</a>
+      <a href="design.html">Design Section</a>
+    </nav>
+  </div>
+
+  <div class="footer-credit">
+    <p>© 2025 Engineers Without Borders Challenge</p>
+  </div>
+</footer>
+
+<style>
+.site-footer{
+  background:linear-gradient(180deg,#0f172a,#1e293b);
+  color:#f1f5f9;
+  padding:3rem 1rem 1rem;
+  margin-top:4rem;
+  border-top:4px solid var(--reef);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.footer-wrap{
+  max-width:1100px;margin:0 auto;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;
+  border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:1rem;
+}
+.footer-left h3{font-size:1.2rem;color:var(--reef);margin:.1rem 0 .5rem}
+.footer-left p{margin:0;color:#cbd5e1;font-size:.95rem;line-height:1.4}
+.footer-links{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;align-items:center}
+.footer-links a{color:#f1f5f9;text-decoration:none;font-weight:600}
+.footer-links a:hover{color:var(--sea)}
+.footer-credit{text-align:center;margin-top:1.2rem;font-size:.85rem;color:#94a3b8}
+</style>
+
+
