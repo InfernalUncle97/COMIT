@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Energy Incorporated — Saibai Floating Solar Overview</title>
+<meta name="color-scheme" content="light dark">
+<style>
+  /* ===== Design tokens (matches the Saibai theme) ===== */
+  :root{
+    --bg:#f3f8fc; --ink:#0f172a; --muted:#475569; --line:#e6eef5; --panel:#ffffff;
+    --sea:#0ea5e9; --deep:#2563eb; --reef:#14b8a6; --sun:#f59e0b; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(15,23,42,.08);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1220; --ink:#e7eefc; --muted:#a9b4c9; --line:#24314f; --panel:#0f1730;
+    --sea:#22d3ee; --deep:#2563eb; --reef:#34d399; --sun:#fbbf24; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--sea);text-decoration:none}
+  html{scroll-behaviour:smooth;scroll-behavior:smooth}
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 15% -100px, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(90deg,var(--sea),var(--deep));
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow); padding:64px 18px
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:18px}
+  .hero h1{margin:0;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.5px}
+  .sub{opacity:.95;margin-top:6px}
+
+  /* ===== Cards & grids ===== */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  .section{margin-top:18px}
+  .section h2{margin:0 0 .6rem 0;font-size:1.6rem;border-bottom:3px solid var(--sea);padding-bottom:6px}
+  .muted{color:var(--muted)}
+  .grid{display:grid;gap:18px;grid-template-columns:1.1fr .9fr}
+  .grid.rev{grid-template-columns:.9fr 1.1fr}
+  @media (max-width:980px){ .grid,.grid.rev{grid-template-columns:1fr} }
+  .img{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .img img{display:block;width:100%;height:auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:.7rem 1rem;border-radius:12px;
+       border:1px solid var(--line);background:linear-gradient(180deg,#fff,#f6fbff);font-weight:700;cursor:pointer}
+  :root[data-theme="dark"] .btn{background:linear-gradient(180deg,#0f1730,#0f1838)}
+  .btn:hover{transform:translateY(-1px)}
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+  /* ===== Key Considerations layout & graphic ===== */
+  .kc-wrap{margin-top:14px}
+  .kc-graphic{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:980px){ .kc-graphic{grid-template-columns:1fr} }
+
+  .radar{aspect-ratio:1/1;background:linear-gradient(135deg,rgba(14,165,233,.10),rgba(20,184,166,.10));
+         border:1px solid var(--line);border-radius:14px;padding:14px}
+  svg text{font-family:Inter,system-ui,Arial,sans-serif}
+
+  /* subtle pulse on radar nodes */
+  .pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:1}100%{transform:scale(1);opacity:.9}}
+
+  /* Accordion styling */
+  .kc-groups{display:flex;flex-direction:column;gap:10px}
+  .kc-item{border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow)}
+  .kc-summary{
+    appearance:none; -webkit-appearance:none;
+    color: var(--ink) !important;
+    font-size: 1rem; line-height: 1.3;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    width:100%; text-align:left; padding:14px 44px 14px 14px; border:0; background:transparent;
+    cursor:pointer; position:relative; border-radius:12px;
+    white-space: normal; text-indent: 0; overflow: visible;
+  }
+  .kc-summary:focus-visible{outline:2px solid var(--sea); outline-offset:2px}
+  .kc-summary *{ color: inherit }
+  .kc-title{ flex:1; font-weight:800 }
+
+  /* caret icon */
+  .kc-caret{
+    position:absolute; right:14px; top:50%; translate:0 -50%;
+    width:18px; height:18px; border-right:3px solid var(--muted); border-bottom:3px solid var(--muted);
+    rotate:45deg; transition:transform .28s ease;
+  }
+  .kc-summary[aria-expanded="true"] .kc-caret{ transform:rotate(180deg) translateY(2px) }
+
+  /* animated panel */
+  .kc-panel{
+    overflow:hidden; max-height:0; opacity:0;
+    transition:max-height .34s ease, opacity .28s ease;
+    padding-inline:14px;
+  }
+  .kc-panel.open{
+    opacity:1; padding-bottom:12px; /* extra space for content */
+  }
+  .kc-panel .points{margin:.6rem 0 0 .4rem}
+  .kc-panel li{margin:.3rem 0}
+
+  .disclaimer{font-size:.9rem;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Open Energy Incorporated</h1>
+    <p class="sub">Floating Solar for Saibai Island — project overview</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Project Snapshot -->
+  <section class="section card" id="snapshot">
+    <h2>Project Snapshot</h2>
+    <div class="grid">
+      <div>
+        <p>Open Energy Incorporated is proud to present our latest project, floating solar for Saibai Island, addressing EWB design challenge brief 4.1. We have been working very closely with the local community to construct a set of floating solar panels that will be utilised to provide continuous, year-round low-cost sustainable energy for the Saibai community, with the ultimate goal of replacing the pre-existing diesel generators.</p>
+        <div class="cta-row">
+          <a class="btn" href="snapshot.html" aria-label="Read more about the Project Snapshot">Read More</a>
+        </div>
+      </div>
+      <figure class="img card">
+        <img src="exec1.png" alt="Aerial view of low-lying island coast and community">
+      </figure>
+    </div>
+  </section>
+
+  <!-- Proposal Summary -->
+  <section class="section card" id="proposal">
+    <h2>Proposal Summary</h2>
+    <div class="grid rev">
+      <figure class="img card">
+        <img src="exec2.png" alt="Icons of outages, logistics and costs affecting households and clinics">
+      </figure>
+      <div>
+        <p>The project aims to overcome the issues faced by the state of Saibai Island’s present electrical grid. These include but are not limited to; an electrical grid which is vulnerable to frequent coastal flooding, aging components, reliance on fossil fuels and a dependency on a costly and unreliable fuel supply chain. Our solution covers all these issues, as our floating solar system will be able to continuously and safely generate renewable energy for the Saibai community.</p>
+        <div class="cta-row">
+          <a class="btn" href="proposal.html" aria-label="Read more about the Proposal Summary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Overview -->
+  <section class="section card" id="design">
+    <h2>Design Overview</h2>
+    <div class="grid">
+      <div>
+        <p>Our proposed solution is a Floating Solar Power System designed specifically for Saibai Island’s coastal environment. The system will consist of interconnected floating platforms anchored offshore, each fitted with photovoltaic (PV) panels that generate electricity from sunlight. Electricity will be transmitted through underwater cables to an onshore dual battery and power converter unit, which will be mounted on stilts to protect it from tidal surges and flooding. This configuration allows for energy to be both stored and converted efficiently for community use, ensuring reliable access even during adverse weather or night-time hours.</p>
+        <div class="cta-row">
+          <a class="btn" href="design-overview.html" aria-label="Read more about the Design Overview">Read More</a>
+        </div>
+      </div>
+      <figure class="img card">
+        <img src="6.png" alt="Floating solar platforms arranged offshore on calm water">
+      </figure>
+    </div>
+  </section>
+
+  <!-- Key Considerations (always visible, animated accordion) -->
+  <section class="section card" id="key-considerations">
+    <h2>Key Considerations</h2>
+
+    <div class="kc-wrap">
+      <div class="kc-graphic">
+        <!-- Animated “radar” graphic (SVG) -->
+        <div class="radar card" aria-hidden="true">
+          <svg viewBox="0 0 500 500" width="100%" height="100%" role="img" aria-label="Considerations radar">
+            <defs>
+              <linearGradient id="ring" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#22d3ee" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#34d399" stop-opacity=".18"/>
+              </linearGradient>
+            </defs>
+            <!-- Rings -->
+            <circle cx="250" cy="250" r="220" fill="none" stroke="url(#ring)" stroke-width="2"/>
+            <circle cx="250" cy="250" r="170" fill="none" stroke="url(#ring)" stroke-width="2"/>
+            <circle cx="250" cy="250" r="120" fill="none" stroke="url(#ring)" stroke-width="2"/>
+            <circle cx="250" cy="250" r="70"  fill="none" stroke="url(#ring)" stroke-width="2"/>
+
+            <!-- Spokes -->
+            <g stroke="#93c5fd" stroke-opacity=".6">
+              <line x1="250" y1="20"  x2="250" y2="480"/>
+              <line x1="20"  y1="250" x2="480" y2="250"/>
+              <line x1="80"  y1="100" x2="420" y2="400"/>
+              <line x1="420" y1="100" x2="80"  y2="400"/>
+            </g>
+
+            <!-- Nodes (subtle pulse) -->
+            <g font-size="14" fill="#0f172a">
+              <g class="pulse">
+                <circle cx="250" cy="60" r="10" fill="#22d3ee"/>
+                <text x="250" y="46" text-anchor="middle" font-weight="700">Environmental &amp; Climate Resilience</text>
+              </g>
+              <g class="pulse" style="animation-delay:.25s">
+                <circle cx="420" cy="250" r="10" fill="#34d399"/>
+                <text x="430" y="268" font-weight="700">Technical &amp; Safety</text>
+              </g>
+              <g class="pulse" style="animation-delay:.5s">
+                <circle cx="250" cy="440" r="10" fill="#f59e0b"/>
+                <text x="250" y="470" text-anchor="middle" font-weight="700">Economic &amp; Maintenance</text>
+              </g>
+              <g class="pulse" style="animation-delay:.75s">
+                <circle cx="80" cy="250" r="10" fill="#fb7185"/>
+                <text x="25" y="268" font-weight="700">Regulatory &amp; Permitting</text>
+              </g>
+              <g class="pulse" style="animation-delay:1s">
+                <circle cx="110" cy="120" r="10" fill="#0ea5e9"/>
+                <text x="20" y="114" font-weight="700">Community Engagement</text>
+              </g>
+            </g>
+
+            <!-- Sweep (radar scan) -->
+            <g>
+              <animateTransform attributeName="transform" attributeType="XML"
+                type="rotate" from="0 250 250" to="360 250 250" dur="9s" repeatCount="indefinite"/>
+              <path d="M250,250 L250,30 A220,220 0 0,1 445,142 Z"
+                    fill="rgba(34,211,238,.12)" stroke="rgba(34,211,238,.25)" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Accordion groups -->
+        <div class="kc-groups" role="tablist" aria-label="Key considerations">
+          <div class="kc-item">
+            <button class="kc-summary" role="tab" aria-expanded="true" aria-controls="kc-env" id="kc-btn-env">
+              <span class="kc-title">Environmental &amp; Climate Resilience</span>
+              <span class="kc-caret" aria-hidden="true"></span>
+            </button>
+            <div id="kc-env" role="tabpanel" aria-labelledby="kc-btn-env" class="kc-panel">
+              <ul class="points">
+                <li>A comprehensive environmental impact assessment should be conducted to ensure minimal disruption to marine habitats and coastal ecosystems.</li>
+                <li>The design of the floating platforms and anchoring systems must account for sea-level rise, cyclonic activity, and high wind conditions typical of the Torres Strait region.</li>
+                <li>All marine infrastructure should be constructed from corrosion-resistant and marine-grade materials to ensure long-term durability and reduced maintenance needs.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kc-item">
+            <button class="kc-summary" role="tab" aria-expanded="false" aria-controls="kc-comm" id="kc-btn-comm">
+              <span class="kc-title">Community Engagement</span>
+              <span class="kc-caret" aria-hidden="true"></span>
+            </button>
+            <div id="kc-comm" role="tabpanel" aria-labelledby="kc-btn-comm" class="kc-panel">
+              <ul class="points">
+                <li>Collaboration with the Saibai Island community and Traditional Owners is essential to align the project with local cultural values and environmental priorities.</li>
+                <li>Training programmes should be developed to enable local residents to participate in the maintenance and operation of the energy system, promoting community ownership and self-sufficiency.</li>
+                <li>The aesthetic and spatial impact of the infrastructure should be carefully considered to maintain harmony with the island’s cultural and natural landscape.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kc-item">
+            <button class="kc-summary" role="tab" aria-expanded="false" aria-controls="kc-tech" id="kc-btn-tech">
+              <span class="kc-title">Technical &amp; Safety Considerations</span>
+              <span class="kc-caret" aria-hidden="true"></span>
+            </button>
+            <div id="kc-tech" role="tabpanel" aria-labelledby="kc-btn-tech" class="kc-panel">
+              <ul class="points">
+                <li>The dual battery and energy converter system must be elevated above historical and projected flood levels to ensure safety and operational reliability.</li>
+                <li>Electrical safety features, including lightning protection, surge arresters, and emergency shut-off systems, should be incorporated into the design.</li>
+                <li>Redundancy should be built into the storage and distribution network to maintain energy supply continuity during adverse weather or maintenance operations.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kc-item">
+            <button class="kc-summary" role="tab" aria-expanded="false" aria-controls="kc-econ" id="kc-btn-econ">
+              <span class="kc-title">Economic &amp; Maintenance Factors</span>
+              <span class="kc-caret" aria-hidden="true"></span>
+            </button>
+            <div id="kc-econ" role="tabpanel" aria-labelledby="kc-btn-econ" class="kc-panel">
+              <ul class="points">
+                <li>A long-term maintenance and replacement plan should be established, detailing inspection schedules, component lifespans, and associated costs.</li>
+                <li>Logistical challenges related to transporting materials and skilled personnel to Saibai Island must be considered in the implementation strategy.</li>
+                <li>Partnerships with renewable energy organisations or government initiatives should be explored to ensure sustainable financing and ongoing technical support.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kc-item">
+            <button class="kc-summary" role="tab" aria-expanded="false" aria-controls="kc-reg" id="kc-btn-reg">
+              <span class="kc-title">Regulatory &amp; Permitting Requirements</span>
+              <span class="kc-caret" aria-hidden="true"></span>
+            </button>
+            <div id="kc-reg" role="tabpanel" aria-labelledby="kc-btn-reg" class="kc-panel">
+              <ul class="points">
+                <li>The project must comply with relevant Australian maritime, environmental, and electrical standards, including regulations specific to the Torres Strait region.</li>
+                <li>Appropriate permits for offshore installations and integration into the local grid should be secured prior to construction.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="disclaimer">Note: The radar is illustrative and intended for presentation use.</p>
+    </div>
+  </section>
+
+  <!-- Materials & Cost Summary -->
+  <section class="section card" id="materials">
+    <h2>Proposed Materials &amp; Cost Summary</h2>
+    <div class="grid rev">
+      <figure class="img card">
+        <img src="exec3.png" alt="Grid of solar modules on modular floating pontoons under sun">
+      </figure>
+      <div>
+        <p>The floating solar system will use durable, lightweight materials designed to last in marine conditions. Each 10×10 m platform will include HDPE (High-Density Polyethylene) floats, an anodised aluminium frame, and 28 solar panels. These materials are corrosion-resistant, easy to maintain, and safe for the marine environment.</p>
+        <p>The total estimated cost of the project is around A$22 million (including GST). This includes 75 floating platforms, a 16 MWh battery system, submarine power cable, anchors and mooring lines, monitoring equipment, and installation in the Torres Strait region. The project will be built in stages to reduce upfront costs and allow the community to manage it effectively.</p>
+        <p>As solar and battery technology improves, future upgrades will become more efficient and cost-effective.</p>
+        <div class="cta-row">
+          <a class="btn" href="materials-and-costs.html" aria-label="Read more about Materials and Costs">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Understanding Saibai’s Energy Challenge -->
+  <section class="section card" id="challenge">
+    <h2>Understanding Saibai’s Energy Challenge</h2>
+    <div class="grid">
+      <div>
+        <p>Saibai Island, home to around 340 Torres Strait Islanders, relies entirely on expensive diesel power that’s often disrupted by flooding and long transport delays. These outages affect everything — from food storage and classrooms to medical care for Elders.</p>
+        <p>Our project proposes an innovative solution: floating solar systems designed to deliver clean, reliable energy without using precious land or threatening cultural values.</p>
+        <div class="cta-row">
+          <a class="btn" href="energy-challenge.html" aria-label="Read more about Saibai’s Energy Challenge">Read More</a>
+        </div>
+      </div>
+      <figure class="img card">
+        <img src="exec4.png" alt="Low-lying Saibai shoreline with houses and coconut trees">
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Persist theme with the same key as your other page (optional)
+  const key='saibai-theme';
+  const saved = localStorage.getItem(key);
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+
+  /* Key Considerations accordion: animated + one-open-only */
+  (function(){
+    const items = Array.from(document.querySelectorAll('#key-considerations .kc-item'));
+    const panels = items.map(it => it.querySelector('.kc-panel'));
+    const buttons = items.map(it => it.querySelector('.kc-summary'));
+
+    function openPanel(idx){
+      panels.forEach((panel, i) => {
+        const btn = buttons[i];
+        const isTarget = i === idx && idx !== -1;
+
+        if(isTarget){
+          panel.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded','true');
+        }else{
+          panel.classList.remove('open');
+          panel.style.maxHeight = '0px';
+          btn.setAttribute('aria-expanded','false');
+        }
+      });
+    }
+
+    // Start with the first panel open
+    openPanel(0);
+
+    // Click + keyboard
+    buttons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        openPanel(isOpen ? -1 : idx);
+      });
+      btn.addEventListener('keydown', (e) => {
+        const codes = ['ArrowUp','ArrowDown','Home','End'];
+        if(!codes.includes(e.key)) return;
+        e.preventDefault();
+        let next = idx;
+        if(e.key==='ArrowDown') next = (idx+1) % buttons.length;
+        if(e.key==='ArrowUp')   next = (idx-1+buttons.length) % buttons.length;
+        if(e.key==='Home')      next = 0;
+        if(e.key==='End')       next = buttons.length-1;
+        buttons[next].focus();
+      });
+    });
+
+    // Keep height correct on resize
+    window.addEventListener('resize', () => {
+      panels.forEach((panel) => {
+        if(panel.classList.contains('open')){
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
