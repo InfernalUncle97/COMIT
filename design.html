@@ -336,6 +336,241 @@
     <p>Based on the decision matrix and criteria evaluation, the <strong>Floating Solar System</strong> was selected as the final design to be developed. This system uses 10×10&nbsp;m HDPE floating platforms with solar panels and a dual battery/converter unit mounted on stilts near shore. It provides a clean, flood-resilient, and community-managed solution that preserves land for housing and cultural use while ensuring reliable power generation.</p>
   </section>
 
+<!-- ===================== DETAIL: INTERACTIVE DIAGRAM + ENERGY FLOW ===================== -->
+<section class="section card" id="detail-interact">
+  <h2>Detailed Design — Interactive</h2>
+
+  <!-- ===== 1) Annotated Exploded Diagram ===== -->
+  <div class="diagram">
+    <header class="di-head">
+      <strong>System Diagram</strong>
+      <span class="muted">Scroll/touch to zoom · drag to pan · click labels</span>
+      <div class="di-zoom">
+        <button class="btn-lite" data-zoom="-">–</button>
+        <button class="btn-lite" data-zoom="+">+</button>
+        <button class="btn-lite" data-zoom="1">100%</button>
+      </div>
+    </header>
+
+    <div class="di-stage" aria-label="Exploded system diagram" role="region">
+      <img class="di-img" src="design4.png" alt="Floating solar system diagram">
+
+      <!-- Hotspots: position with left/top in percentages so it scales with the image -->
+      <button class="hotspot" style="left:43%;top:52%" data-title="PV Modules"
+        data-body="Panels mounted on the floating frame. Seawater cooling improves efficiency compared to land arrays.">1</button>
+
+      <button class="hotspot" style="left:34%;top:70%" data-title="Floating Platform"
+        data-body="HDPE floats with aluminium superstructure; buoyant, UV-resistant, cyclone-ready.">2</button>
+
+      <button class="hotspot" style="left:54%;top:78%" data-title="Junction Box"
+        data-body="Collects DC from strings; surge protection and isolation before sub-sea export.">3</button>
+
+      <button class="hotspot" style="left:66%;top:65%" data-title="Submarine Cable"
+        data-body="Armoured, UV-resistant, wet-mate rated; carries DC ashore to the converter.">4</button>
+
+      <button class="hotspot" style="left:73%;top:33%" data-title="Power Converter (onshore)"
+        data-body="DC-AC conversion, protection &amp; telemetry; feeds the microgrid and charges the batteries.">5</button>
+
+      <button class="hotspot" style="left:40%;top:84%" data-title="Anchors &amp; Moorings"
+        data-body="Catenary or taut moorings sized for tides, surge and wave climate; keeps array aligned to the sun.">6</button>
+    </div>
+
+    <aside class="di-panel" aria-live="polite">
+      <h3 id="di-title">Tap a label</h3>
+      <p class="muted" id="di-body">Hover/click a numbered tag to see details.</p>
+      <details class="note" open>
+        <summary><strong>Tip:</strong> How to read</summary>
+        <p>Start at the panels (1), follow DC through the junction box (3) into the submarine cable (4) and onto the onshore converter (5).</p>
+      </details>
+    </aside>
+  </div>
+
+  <!-- ===== 2) Energy Flow — Guided Stepper ===== -->
+  <div class="flow">
+    <header class="di-head">
+      <strong>Energy Flow Summary</strong>
+      <span class="muted">Follow the numbered steps</span>
+    </header>
+
+    <div class="flow-grid">
+      <figure class="flow-fig">
+        <img class="flow-img" src="des" alt="Energy flow overview">
+        <!-- Overlays that light up per step (coords in %) -->
+        <span class="pin" style="left:28%;top:40%" data-step="1">1</span>
+        <span class="pin" style="left:40%;top:48%" data-step="2">2</span>
+        <span class="pin" style="left:52%;top:64%" data-step="3">3</span>
+        <span class="pin" style="left:68%;top:58%" data-step="4">4</span>
+        <span class="pin" style="left:80%;top:32%" data-step="5">5</span>
+        <span class="pin" style="left:86%;top:44%" data-step="6">6</span>
+        <span class="pin" style="left:90%;top:54%" data-step="7">7</span>
+      </figure>
+
+      <div class="flow-steps">
+        <ol id="flowList">
+          <li data-step="1"><strong>Sunlight</strong> makes contact with the PV modules.</li>
+          <li data-step="2">The PV modules convert sunlight into <strong>DC</strong> electricity.</li>
+          <li data-step="3">The junction box gathers <strong>DC</strong> and sends it through the submarine cable.</li>
+          <li data-step="4">The onshore converter receives the <strong>DC</strong> electricity.</li>
+          <li data-step="5">The converter transforms <strong>DC → AC</strong> for the grid.</li>
+          <li data-step="6">The dual-battery system stores excess energy for later use.</li>
+          <li data-step="7"><strong>AC</strong> power is distributed to the island’s network.</li>
+        </ol>
+        <div class="stepper">
+          <button class="btn-lite" data-prev>Prev</button>
+          <div class="dots" id="flowDots" aria-hidden="true"></div>
+          <button class="btn-lite" data-next>Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* --- local styles for this block (inherit your tokens) --- */
+#detail-interact .di-head{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:12px}
+#detail-interact .btn-lite{appearance:none;border:1px solid var(--line);background:var(--panel);padding:.45rem .65rem;border-radius:10px;cursor:pointer;font-weight:700}
+#detail-interact .btn-lite:hover{background:#f8fbff}
+#detail-interact .di-zoom{display:flex;gap:8px}
+
+.diagram{display:grid;gap:16px;grid-template-columns:1.25fr .75fr}
+@media (max-width:1000px){.diagram{grid-template-columns:1fr}}
+.di-stage{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#fff,#f6fbff)}
+:root[data-theme="dark"] .di-stage{background:linear-gradient(180deg,#0f1730,#0f1838)}
+.di-img{display:block;max-width:100%;height:auto;transform-origin:0 0;user-select:none;touch-action:none;cursor:grab}
+.di-stage.dragging .di-img{cursor:grabbing}
+
+.hotspot{position:absolute;transform:translate(-50%,-50%);
+  width:28px;height:28px;border-radius:50%;border:none;color:#fff;font-weight:800;cursor:pointer;
+  background:linear-gradient(135deg,#22d3ee,#2563eb);box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.hotspot:focus-visible{outline:3px solid var(--reef)}
+
+.di-panel{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--panel);box-shadow:var(--shadow)}
+.di-panel h3{margin:.2rem 0}
+
+.flow .flow-grid{display:grid;gap:16px;grid-template-columns:1.15fr .85fr}
+@media (max-width:1000px){.flow .flow-grid{grid-template-columns:1fr}}
+.flow-fig{position:relative;margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.flow-img{display:block;width:100%;height:auto}
+.pin{position:absolute;transform:translate(-50%,-50%);
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:#0ea5e9;color:#fff;font-weight:900;box-shadow:0 6px 18px rgba(14,165,233,.35);opacity:.55;transition:opacity .2s, transform .2s}
+.pin.active{opacity:1;transform:translate(-50%,-50%) scale(1.06);background:#14b8a6}
+
+.flow-steps ol{margin:0;padding-left:20px;display:grid;gap:10px}
+.flow-steps li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;list-style:decimal}
+.flow-steps li.active{border-color:#22d3ee;box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+.stepper{display:flex;align-items:center;gap:10px;margin-top:10px}
+.dots{display:flex;gap:6px;flex:1;justify-content:center}
+.dots i{width:8px;height:8px;border-radius:999px;background:var(--line)}
+.dots i.on{background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.18);}
+
+.note{margin-top:10px}
+</style>
+
+<script>
+/* ========= 1) Zoom/Pan + Hotspots ========= */
+(function(){
+  const stage = document.querySelector('.di-stage');
+  const img   = stage.querySelector('.di-img');
+  const panelT = document.getElementById('di-title');
+  const panelB = document.getElementById('di-body');
+
+  let scale = 1, minS = 1, maxS = 3;
+  let ox = 0, oy = 0;       // current offset
+  let sx = 0, sy = 0;       // drag start
+  let dragging = false;
+
+  function apply(){ img.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`; }
+  function clamp(){
+    // keep within bounds
+    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+    const vw = stage.clientWidth, vh = stage.clientHeight;
+    const maxX = Math.max(0,(w - vw)/2), maxY = Math.max(0,(h - vh)/2);
+    ox = Math.max(-maxX, Math.min(maxX, ox));
+    oy = Math.max(-maxY, Math.min(maxY, oy));
+  }
+  // wheel zoom
+  stage.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const dir = Math.sign(e.deltaY)*-1;
+    const prev = scale;
+    scale = Math.max(minS, Math.min(maxS, scale + dir*0.15));
+    // zoom towards cursor
+    const rect = stage.getBoundingClientRect();
+    const cx = e.clientX - rect.left - stage.clientWidth/2;
+    const cy = e.clientY - rect.top  - stage.clientHeight/2;
+    ox = (ox - cx) * (scale/prev) + cx;
+    oy = (oy - cy) * (scale/prev) + cy;
+    clamp(); apply();
+  }, {passive:false});
+
+  // buttons
+  document.querySelectorAll('.di-zoom .btn-lite').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const t = b.getAttribute('data-zoom');
+      if(t==='+') scale = Math.min(maxS, scale+0.2);
+      else if(t==='-') scale = Math.max(minS, scale-0.2);
+      else scale = 1, ox = oy = 0;
+      clamp(); apply();
+    });
+  });
+
+  // drag to pan
+  stage.addEventListener('pointerdown', e=>{
+    stage.classList.add('dragging');
+    dragging = true; sx = e.clientX - ox; sy = e.clientY - oy; stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', e=>{
+    if(!dragging) return;
+    ox = e.clientX - sx; oy = e.clientY - sy; clamp(); apply();
+  });
+  stage.addEventListener('pointerup', e=>{
+    dragging = false; stage.classList.remove('dragging'); stage.releasePointerCapture(e.pointerId);
+  });
+
+  // hotspots
+  stage.querySelectorAll('.hotspot').forEach(h=>{
+    h.addEventListener('click', ()=>{
+      panelT.textContent = h.dataset.title;
+      panelB.textContent = h.dataset.body;
+      stage.querySelectorAll('.hotspot').forEach(x=>x.style.outline='none');
+      h.style.outline = '3px solid rgba(34,211,238,.45)';
+    });
+  });
+})();
+
+/* ========= 2) Energy Flow stepper ========= */
+(function(){
+  const list = document.getElementById('flowList');
+  const items = Array.from(list.querySelectorAll('li'));
+  const pins = Array.from(document.querySelectorAll('.pin'));
+  const dots = document.getElementById('flowDots');
+  let idx = 0;
+
+  // build dots
+  for(let i=0;i<items.length;i++){
+    const d=document.createElement('i'); dots.appendChild(d);
+  }
+  const dotEls = Array.from(dots.children);
+
+  function setActive(i){
+    idx = Math.max(0, Math.min(items.length-1, i));
+    items.forEach(li=>li.classList.toggle('active', Number(li.dataset.step)-1===idx));
+    pins.forEach(p=>p.classList.toggle('active', Number(p.dataset.step)-1===idx));
+    dotEls.forEach((d,j)=>d.classList.toggle('on', j<=idx));
+    // scroll into view on small screens
+    items[idx].scrollIntoView({block:'nearest', behavior:'smooth'});
+  }
+  setActive(0);
+
+  document.querySelector('[data-next]').addEventListener('click', ()=>setActive(idx+1));
+  document.querySelector('[data-prev]').addEventListener('click', ()=>setActive(idx-1));
+  pins.forEach(p=>p.addEventListener('click', ()=>setActive(Number(p.dataset.step)-1)));
+  items.forEach(li=>li.addEventListener('click', ()=>setActive(Number(li.dataset.step)-1)));
+})();
+</script>
+
+
 </main>
 
 <script>
@@ -382,9 +617,7 @@ const obs = new IntersectionObserver(entries=>{
 sections.forEach(s=>obs.observe(s));
 
 /* ============== Matrix totals + Confetti celebration ============== */
-const tbody = $('#dmatrix tbody');
-const weightsPanel = $('#weightsPanel');
-let lastWinner = null;
+
 
 $$('#dmatrix tbody tr').forEach((row, idx)=>{
   const name = row.getAttribute('data-crit');
