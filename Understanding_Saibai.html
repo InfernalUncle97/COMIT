@@ -3,145 +3,187 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Saibai Island – Background (Vibrant Coastal)</title>
+<title>Understanding Saibai — Background & Problem Description</title>
 <meta name="color-scheme" content="light dark">
 <style>
-:root{
-  --bg:#f3f8fc;--ink:#0f172a;--muted:#475569;--line:#e6eef5;--panel:#fff;
-  --sea:#0ea5e9;--deep:#2563eb;--reef:#14b8a6;--sun:#f59e0b;--rose:#fb7185;
-  --shadow:0 6px 26px rgba(15,23,42,.08);
+    /* === Middle feature section (visual contrast) === */
+.feature{margin-top:16px}
+.feature .banner{
+  border-radius:12px;
+  padding:14px 14px;
+  color:#fff;
+  background:
+    radial-gradient(900px 320px at 85% -120px, rgba(255,255,255,.22), transparent 60%),
+    linear-gradient(90deg, var(--reef), var(--sea));
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
 }
-:root[data-theme=dark]{
-  --bg:#0b1220;--ink:#e7eefc;--muted:#a9b4c9;--line:#24314f;--panel:#0f1730;
-  --sea:#22d3ee;--deep:#2563eb;--reef:#34d399;--sun:#fbbf24;--rose:#fb7185;
-  --shadow:0 6px 26px rgba(0,0,0,.35);
+.feature .banner h2{margin:0;font-size:1.12rem;letter-spacing:.2px}
+.feature .body{display:grid;gap:16px;grid-template-columns:1.25fr .75fr}
+@media (max-width:980px){.feature .body{grid-template-columns:1fr}}
+
+.feature .stack > * + *{margin-top:12px}
+
+/* Image panel styling to match the rest */
+.feature figure{margin:0}
+.feature .img{
+  width:100%;display:block;border-radius:12px;
+  border:1px solid var(--line);background:#fff
 }
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);
-font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-a{color:var(--sea)}html{scroll-behavior:smooth}
-.hero{position:sticky;top:0;z-index:10;background:
-  radial-gradient(1200px 500px at 15% -100px,rgba(255,255,255,.35),transparent 55%),
-  linear-gradient(90deg,var(--sea),var(--deep));color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
-  box-shadow:var(--shadow)}
-.bar{max-width:1200px;margin:0 auto;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.logo{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);
-border:1px solid rgba(255,255,255,.6)}.title{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem)}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
-.btn{appearance:none;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);
-color:#fff;padding:.5rem .7rem;border-radius:10px;font-weight:700;cursor:pointer}
-.btn:hover{background:rgba(255,255,255,.18)}
-.wrap{max-width:1200px;margin:0 auto;padding:16px 18px 28px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-h2{margin:0 0 .6rem 0;font-size:1.32rem;border-bottom:3px solid var(--sea);padding-bottom:4px}
-.grid{display:grid;gap:16px;grid-template-columns:1.1fr .9fr}@media(max-width:900px){.grid{grid-template-columns:1fr}}
-.kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-top:10px}
-.kpi{border:1px solid var(--line);border-radius:14px;padding:12px;background:linear-gradient(180deg,#fff,#f6fbff)}
-:root[data-theme=dark] .kpi{background:linear-gradient(180deg,#0f1730,#0f1838)}
-.kpi strong{display:block;font-size:1.25rem}.kpi small{color:var(--muted)}
-.note{border-left:4px solid var(--reef);padding-left:10px}.warn{border-left:4px solid var(--sun);padding-left:10px}
-.alert{border-left:4px solid var(--rose);padding-left:10px}.muted{color:var(--muted)}
-footer{color:var(--muted);text-align:center;margin-top:18px}
-main{padding-bottom:max(96px,env(safe-area-inset-bottom,24px))}
+.feature figcaption{font-size:.92rem;color:var(--muted);margin-top:6px}
+
+  :root{
+    --bg:#f3f8fc; --ink:#0f172a; --muted:#475569; --line:#e6eef5; --panel:#ffffff;
+    --sea:#0ea5e9; --deep:#2563eb; --reef:#14b8a6; --sun:#f59e0b; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(15,23,42,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0b1220; --ink:#e7eefc; --muted:#a9b4c9; --line:#24314f; --panel:#0f1730;
+           --sea:#22d3ee; --reef:#34d399; --sun:#fbbf24; --rose:#fb7185; --shadow:0 6px 26px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--sea)} html{scroll-behavior:smooth}
+
+  /* Header */
+  .hero{
+    position:sticky;top:0;z-index:10;
+    background:
+      radial-gradient(1200px 500px at 15% -100px, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(90deg,var(--sea),var(--deep));
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.25);box-shadow:var(--shadow)
+  }
+  .bar{max-width:1200px;margin:0 auto;padding:16px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .logo{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);
+        border:1px solid rgba(255,255,255,.6)}
+  .title{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);line-height:1}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+  .tab{background:#fff1;border:1px solid #fff6;color:#fff;padding:.45rem .7rem;border-radius:999px;
+       text-decoration:none;font-weight:700}
+  .tab:hover{background:#fff;color:#0c2440}
+
+  /* Layout */
+  .wrap{max-width:1200px;margin:0 auto;padding:16px 18px 28px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .section{margin-top:16px}
+  .section h2{margin:0 0 .6rem 0;font-size:1.32rem;border-bottom:3px solid var(--sea);padding-bottom:4px}
+  .muted{color:var(--muted)}
+
+  .grid{display:grid;gap:16px;grid-template-columns:1.2fr .8fr}
+  .two{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+  .three{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+  @media (max-width:980px){.grid,.two,.three{grid-template-columns:1fr}}
+
+  /* Image styling */
+  .img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);background:#fff}
+  figcaption{font-size:.92rem;color:var(--muted);margin-top:6px}
+
+  /* Chips */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-top:10px}
+  .kpi{border:1px solid var(--line);border-radius:14px;padding:12px;background:linear-gradient(180deg,#fff,#f6fbff)}
+  @media (max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi strong{display:block;font-size:1.25rem}
+  .kpi small{color:var(--muted)}
+
+  .hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+  footer{color:var(--muted);text-align:center;margin-top:18px}
 </style>
 </head>
 <body>
-<header class="hero">
+
+<header class="hero" id="top">
   <div class="bar">
     <span class="logo" aria-hidden="true"></span>
-    <h1 class="title">Saibai Island — Background</h1>
-    <div class="actions">
-      <button class="btn" id="theme">Theme</button>
-      <button class="btn" id="print">Print</button>
-      <button class="btn" id="top">Top</button>
-    </div>
+    <h1 class="title">Understanding Saibai — Background & Problem Description</h1>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" href="#background">Background</a>
+      <a class="tab" href="#problem">Problem Description</a>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
-<section class="card">
-<h2>Community snapshot</h2>
-<div class="kpis">
-  <div class="kpi"><strong>≈ 340</strong><small>Koeybuway &amp; Moegibuway people</small></div>
-  <div class="kpi"><strong>85%</strong><small>Identify as Torres Strait Islander</small></div>
-  <div class="kpi"><strong>$3.70/L</strong><small>Diesel on Saibai vs $1.90 mainland</small></div>
-  <div class="kpi"><strong>&lt; 1 m</strong><small>Average elevation above sea level</small></div>
-</div>
+
+  <!-- Quick stats -->
+  <section class="card">
+    <div class="kpis">
+      <div class="kpi"><strong>≈ 340</strong><small>Koeybuway &amp; Moegibuway people</small></div>
+      <div class="kpi"><strong>85.6%</strong><small>Identify as Torres Strait Islander</small></div>
+      <div class="kpi"><strong>$3.70/L</strong><small>Diesel on Saibai (vs $1.90/L mainland)</small></div>
+      <div class="kpi"><strong>&lt; 1 m</strong><small>Typical elevation above sea level</small></div>
+    </div>
+  </section>
+
+  <!-- Background -->
+  <section id="background" class="section card">
+    <h2>Background</h2>
+
+    <div class="grid">
+      <div>
+        <p>Saibai is home to around 340 Koeybuway and Moegibuway people, with 85.6% identifying as Torres Strait Islanders (ABS, 2021). In recent decades, the island has long relied on imported diesel from the mainland paying upwards of $3.70/litre diesel compared to mainland price of $1.90/litre (EWB, 2024a), coupled with frequent flooding their energy infrastructure and supply is fragile and unreliable. These disruptions create profound consequences for residents as they spoil food stored in communal freezers, interrupt digital classrooms for young students and threaten the health of Elders who are depended on powered medical care. 
+        <p>The islands geography and climate are the driving factor of why these problems are common for Saibai, where the island is incredibly flat sitting about a meter above sea level. Each year, they've experienced storm surges and king tide wash across the land in turn damaging buildings fuel storage and electrical systems (TSIRC, 2025). With very little dry ground majority swamp, the community also struggles with overcrowding with their growing population and diminishing housing. Where the latest Master Plan estimate that the island is short about 38 houses for the coming decade (TSIRC, 2025). Because of this land shortage, traditional ground based solar farms or any electrical farm for that matter wont fit or prove as a viable option for Saibai, as they'd take up space better used for homes or cultural areas not to mention costly flood protection for land based solutions.       </div>
+
+      <figure>
+        <img class="img" src="1.png" alt="Fuel logistics map: Cairns/Thursday Island to Saibai" />
+        <figcaption class="muted">Fuel logistics to Saibai — barge routes from Cairns/Thursday Island.</figcaption>
+      </figure>
+    </div>
+
+    <div class="two" style="margin-top:12px">
+      <figure>
+        <img class="img" src="2.png" alt="Bar chart comparing diesel price: Saibai vs mainland" />
+        <figcaption class="muted">Diesel price comparison — Saibai vs mainland.</figcaption>
+      </figure>
+      <figure>
+        <img class="img" src="4.png" alt="Cross-section showing flood risk and low elevation" />
+        <figcaption class="muted">Low elevation &amp; inundation risk — storm surge and king tide exposure.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+<!-- ===== Middle Feature: Approach & Fit (Engaging block) ===== -->
+<section class="section card feature" id="approach">
+  <div class="banner">
+    <h2>Community-led Approach & Floating Solar Fit</h2>
+  </div>
+
+  <div class="body">
+    <!-- LEFT: your exact text, unchanged -->
+    <div class="stack">
+      <p>Throughout our research, we've closely examined where there has been some progress outside of the Torres Strait such as the Masig Island's hybrid solar-diesel microgrid, proving renewables can work in remote areas similar to Saibai Islands (Mirabou Energy, 2023). But even there, maintence is dependent on outside contractors having to be flown in and out. </p>
+
+      <p>That’s where floating solar technology comes in. These systems sit on buoyant modular platforms anchored just offshore. The surrounding seawater naturally cools the panels, helping them run more efficiently, and the setup can link into the existing diesel microgrid to keep power consistent. </p>
+
+      <p>Most importantly, it leaves precious land free for housing and cultural purposes while cutting down fuel imports and emissions. Because it’s modular, the community could start small  maybe with a pilot project  and expand gradually in line with local capacity and TSIRC’s preference for community-led development. good code page dont remove or change just add :</p>
+    </div>
+
+    <!-- RIGHT: supporting visuals (uses your existing images) -->
+    <div class="stack">
+      <figure>
+        <img class="img" src="5.png" alt="Masig Island hybrid microgrid precedent">
+        <figcaption>Precedent — Masig Island’s hybrid solar–diesel microgrid.</figcaption>
+      </figure>
+
+      <figure>
+        <img class="img" src="7.png" alt="Floating solar concept offshore near Saibai">
+        <figcaption>Floating solar (FPV) — modular platforms anchored offshore.</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
-<section class="card">
-<h2>Background</h2>
-<div class="grid">
-<div>
-<p>Saibai Island is only a few kilometres south of Papua New Guinea, home to about 340 Koeybuway and Moegibuway people, around 85% of whom identify as Torres Strait Islanders (ABS 2021). Despite its small population, the community faces major challenges in keeping power both clean and affordable.</p>
 
-<p>Electricity on Saibai currently comes entirely from a diesel-powered microgrid managed by Ergon Energy and overseen by the Torres Strait Island Regional Council (TSIRC) (Energy Queensland, 2022). Every drop of diesel must be shipped from Thursday Island or Cairns — bringing high transport costs, frequent delays and a heavy environmental footprint. By the time fuel reaches Saibai it costs about $3.70 per litre compared to $1.90 on the mainland (EWB 2024a). The result is a system that is expensive, inefficient and vulnerable to weather disruptions that can halt barge deliveries entirely.</p>
 
-<p>The island’s geography and climate compound these issues. Saibai is extremely flat and flood-prone — most of the land sits less than a metre above sea level. Each year, storm surges and king tides wash across the island, damaging buildings, fuel storage and electrical systems (TSIRC 2025). With so little dry ground available, the community already faces housing shortages — the Master Plan forecasts a need for 38 new homes within the next decade (TSIRC 2025). Ground-based solar farms simply don’t fit; they’d occupy land needed for housing or cultural purposes and require costly flood protection.</p>
+  <!-- Problem Description -->
+  <section id="problem" class="section card">
+    <h2>Problem Description</h2>
 
-<p>Progress elsewhere offers some hope. Masig Island’s hybrid solar–diesel microgrid shows that renewables can work in remote islands (Mirabou Energy, 2023). Yet those systems still rely on fly-in contractors for maintenance — an approach that’s costly and unsustainable for Saibai long term. The solution must empower locals, avoid land competition and withstand flooding without interruption.</p>
-
-<p><strong>Floating solar technology</strong> addresses all three. Panels mounted on buoyant modular platforms anchored offshore draw natural cooling from seawater, improving efficiency while integrating with the existing diesel grid. The design cuts fuel transport dependency and protects precious land for homes and culture.</p>
-</div>
-
-<figure class="card">
-  <canvas id="dieselChart" aria-label="Diesel price comparison" role="img"></canvas>
-  <figcaption class="muted">Diesel price comparison – Saibai vs mainland.</figcaption>
-</figure>
-</div>
-
-<div class="note" style="margin-top:10px"><p><strong>Why floating solar?</strong> It offers reliability during flood events, reduces diesel freight and builds local technical capacity through training and ownership.</p></div>
-</section>
-
-<section class="card">
-<h2>Location map (illustrative)</h2>
-<svg viewBox="0 0 600 380" style="width:100%;border-radius:12px" role="img" aria-labelledby="mapTitle">
-<title id="mapTitle">Saibai Island and PNG proximity</title>
-<defs>
-  <linearGradient id="seaGrad" x1="0" x2="1" y1="0" y2="1">
-    <stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/>
-    <stop offset="1" stop-color="#2563eb" stop-opacity=".55"/>
-  </linearGradient>
-</defs>
-<rect width="600" height="380" fill="url(#seaGrad)"/>
-<circle cx="455" cy="190" r="38" fill="#6ee7b7" stroke="#047857" stroke-width="2"/>
-<text x="455" y="180" text-anchor="middle" font-weight="700" font-size="16" fill="#053">Saibai</text>
-<rect x="420" y="10" width="130" height="40" fill="#6ee7b7" stroke="#047857"/>
-<text x="485" y="35" text-anchor="middle" font-weight="700" font-size="16" fill="#053">PNG</text>
-<text x="466" y="238" font-size="12" fill="#083344">≈ 4 km to PNG coast</text>
-</svg>
-</section>
-
-<footer>Vibrant Coastal single-file build. Theme toggle + print + smooth scroll enabled.</footer>
-</main>
-
-<script>
-const themeBtn=document.getElementById('theme');
-themeBtn.onclick=()=>{
-  const cur=document.documentElement.getAttribute('data-theme');
-  const next=cur==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme',next);
-  localStorage.setItem('bgTheme',next);
-};
-const saved=localStorage.getItem('bgTheme');if(saved)document.documentElement.setAttribute('data-theme',saved);
-document.getElementById('print').onclick=()=>window.print();
-document.getElementById('top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
-/* mini bar chart */
-function drawBar(id,labs,vals){
- const c=document.getElementById(id);if(!c)return;
- const ctx=c.getContext('2d'),W=c.clientWidth||600,H=260;
- c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio);
- const max=Math.max(...vals)*1.2,base=220,bw=160,gap=120,start=(W-(bw*2+gap))/2;
- [220,180,140,100].forEach(y=>{ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--line');
- ctx.beginPath();ctx.moveTo(60,y);ctx.lineTo(W-30,y);ctx.stroke();});
- vals.forEach((v,i)=>{const x=start+i*(bw+gap),h=(v/max)*(base-60),y=base-h,r=10;
- const grad=ctx.createLinearGradient(0,y,0,base);
- grad.addColorStop(0,i? '#14b8a6':'#fb7185');grad.addColorStop(1,i? '#6ee7b7':'#fca5a5');
- ctx.beginPath();ctx.moveTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.lineTo(x+bw-r,y);
- ctx.arcTo(x+bw,y,x+bw,y+r,r);ctx.lineTo(x+bw,base);ctx.lineTo(x,base);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
- ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--ink');ctx.font='bold 14px system-ui';ctx.textAlign='center';
- ctx.fillText('$'+v.toFixed(2)+'/L',x+bw/2,y-6);ctx.font='12px system-ui';ctx.fillText(labs[i],x+bw/2,base+18);});
-}
-drawBar('dieselChart',['Saibai diesel','Mainland diesel'],[3.70,1.90]);
-</script>
-</body>
-</html>
+    <div class="grid">
+      <div>
+        <p>The current underlining dependence on diesel places a major strain on both the community of Saibai Island and the Torres Strait Regional Council (TSIRC). Keeping generators running has been proven expensive of residents as costs fallback on residents through higher costs of living. Deliveries are another problem for their current system, as during cyclone season or king tides, barges often can’t dock safely for supplies and more importantly fuel. When this happens, houses, schools and health care will lose power for days and even weeks. This is not only inconvenient but it can mean food spoiling, medical fridges warming and digital communication dropping all together as the Islands residents and system has become more reliant on energy in recent decades. 
+          <p>Saibai’s landscape makes this situation even harder to manage. Most of the island sits barely above sea level, so every high tide or heavy rain carries the risk of flooding. There’s simply not enough elevated ground to build new infrastructure, and the small amount of dry land that does exist is already needed for homes and community buildings 
+            <p>Attempts to bring solar into other Torres Strait communities, like on Masig Island, show both the promise and the limits of renewable projects. The technology works, but the systems still depend on outside contractors to maintain them. Because of that, local people don’t always get the chance to develop the technical skills or decision making control needed to run the systems themselves.  
+   
