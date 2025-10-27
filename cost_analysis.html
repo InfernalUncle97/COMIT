@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cost Analysis — Saibai Floating Solar</title>
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Cost analysis for the Saibai Island floating solar project, including interactive platform count, CAPEX breakdown, and summary insights.">
+<style>
+    /* Make the chart fill its container */
+.chart-card canvas{
+  width: 100%;
+  height: 320px;     /* or whatever you like */
+  display: block;    /* remove inline-gap */
+}
+
+  /* ===== Design tokens ===== */
+  :root{
+    --bg:#f3f8fc; --ink:#0f172a; --muted:#475569; --line:#e6eef5; --panel:#ffffff;
+    --sea:#0ea5e9; --deep:#2563eb; --reef:#14b8a6; --sun:#f59e0b; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(15,23,42,.08);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1220; --ink:#e7eefc; --muted:#a9b4c9; --line:#24314f; --panel:#0f1730;
+    --sea:#22d3ee; --deep:#2563eb; --reef:#34d399; --sun:#fbbf24; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--sea);text-decoration:none}
+  html{scroll-behaviour:smooth;scroll-behavior:smooth}
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 15% -100px, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(90deg,var(--sea),var(--deep));
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow); padding:72px 18px
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:18px}
+  .hero h1{margin:0;font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:.4px}
+  .sub{opacity:.95;margin-top:6px}
+
+  /* ===== Sticky subnav tabs ===== */
+  .subnav{
+    position:sticky; top:0; z-index:40;
+    background:linear-gradient(90deg,var(--sea),var(--deep));
+    border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow);
+  }
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center; padding:12px 18px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800}
+  .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);border:1px solid rgba(255,255,255,.6)}
+  .tab{
+    display:inline-block;background:rgba(255,255,255,.14); color:#fff; font-weight:800;
+    padding:.55rem .9rem; border-radius:999px; border:1px solid rgba(255,255,255,.45)
+  }
+  .tab:hover{background:rgba(255,255,255,.2)}
+  .tab.active{background:#fff;color:#0c2440}
+
+  /* ===== Cards, grids ===== */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .section{margin-top:18px}
+  .section h2{margin:0 0 .6rem 0;font-size:1.9rem;border-bottom:3px solid var(--sea);padding-bottom:6px}
+  .muted{color:var(--muted)}
+  .grid{display:grid;gap:18px;grid-template-columns:1.05fr .95fr}
+  .grid.rev{grid-template-columns:.95fr 1.05fr}
+  @media (max-width:980px){ .grid,.grid.rev{grid-template-columns:1fr} }
+
+  /* ===== KPIs ===== */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
+  @media (max-width:980px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+  .kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#f6fbff)}
+  :root[data-theme="dark"] .kpi{background:linear-gradient(180deg,#0f1730,#0f1838)}
+  .kpi strong{display:block;font-size:1.28rem}
+  .kpi small{color:var(--muted)}
+  .pop{animation:pop .6s ease both}
+  @keyframes pop{0%{transform:translateY(6px);opacity:0}100%{transform:none;opacity:1}}
+
+  /* ===== Calculator ===== */
+  .calc{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+  @media (max-width:980px){ .calc{grid-template-columns:1fr} }
+  .control{border:1px solid var(--line);border-radius:12px;padding:14px}
+  .control label{display:block;font-weight:800;margin-bottom:6px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  input[type="range"]{width:100%}
+  .num{width:110px;padding:8px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font-weight:700;text-align:right}
+
+  /* ===== Table ===== */
+  .table-wrap{margin-top:12px;overflow:auto;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel)}
+  thead th{
+    background:linear-gradient(180deg,#e2f0f6,#d6e9f3);
+    color:#0c2440;font-weight:800;padding:14px;border-bottom:1px solid var(--line);
+    text-align:left
+  }
+  th:first-child{border-top-left-radius:12px}
+  th:last-child{border-top-right-radius:12px}
+  tbody td{padding:14px;border-top:1px solid var(--line)}
+  tbody tr:nth-child(odd) td{background:linear-gradient(180deg,#ffffff,#f8fbfe)}
+  :root[data-theme="dark"] tbody tr:nth-child(odd) td{background:linear-gradient(180deg,#0f1730,#0f1838)}
+  tfoot td{padding:16px 14px;font-weight:800;border-top:2px solid var(--line);background:#f4f9fd}
+  :root[data-theme="dark"] tfoot td{background:#0f1835}
+
+  .note{margin-top:10px;color:var(--muted);font-size:.95rem}
+
+  /* ===== Canvas chart container ===== */
+  .chart-card{display:grid;grid-template-columns:1fr;gap:8px}
+  .chart-legend{display:flex;gap:12px;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+  .dot{width:12px;height:12px;border-radius:999px}
+
+  /* ===== Scroll reveal ===== */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease}
+  .reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Cost Analysis</h1>
+    <p class="sub">Indicative costs for the Saibai floating solar system (incl. GST where shown).</p>
+  </div>
+</header>
+
+<!-- Sticky subnav -->
+<nav class="subnav" aria-label="Sections">
+  <div class="wrap tabs">
+    <span class="brand"><span class="logo" aria-hidden="true"></span> Community Energy — Saibai</span>
+    <a class="tab" data-nav href="#overview">Overview</a>
+    <a class="tab" data-nav href="#breakdown">Cost Breakdown</a>
+    <a class="tab" data-nav href="#value">Maintenance &amp; Value</a>
+    <a class="tab" data-nav href="#summary">Summary</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- KPIs -->
+  <section class="section card">
+    <div class="kpis">
+      <div class="kpi pop"><small>Target annual energy</small><strong id="kpi-energy">1.50&nbsp;GWh</strong></div>
+      <div class="kpi pop"><small>Platforms (adjust below)</small><strong id="kpi-platforms">75</strong></div>
+      <div class="kpi pop"><small>Per-platform (GST)</small><strong>≈ A$32,100</strong></div>
+      <div class="kpi pop"><small>Est. annual saving</small><strong id="kpi-saving">A$600,000</strong></div>
+    </div>
+  </section>
+
+  <!-- Project Cost Overview + Calculator -->
+  <section class="section card reveal" id="overview">
+    <h2>Project Cost Overview</h2>
+    <div class="grid">
+      <div>
+        <p>The floating solar project is designed to supply clean power to Saibai Island.</p>
+        <p>It uses 10×10&nbsp;m floating platforms with solar panels, HDPE floats, and waterproof cables.</p>
+        <p>The goal is to replace diesel generators and lower long-term energy costs.</p>
+        <p>Each platform produces about 56&nbsp;kWh per day (~20,000&nbsp;kWh per year).</p>
+        <p>To reach the target of 1.5&nbsp;GWh per year, about 75 platforms are needed.</p>
+        <p>The project will cost around A$22&nbsp;million (including GST) over several years.</p>
+        <p>This includes platforms, battery storage, submarine power cable, anchors and mooring lines, monitoring equipment, and installation in the Torres Strait.</p>
+      </div>
+
+      <div class="calc">
+        <div class="control">
+          <label for="range">Set platform count</label>
+          <div class="row">
+            <input id="range" type="range" min="40" max="100" step="1" value="75" aria-labelledby="platformCount">
+            <input id="platformCount" class="num" type="number" min="40" max="100" step="1" value="75" aria-label="Platform count">
+          </div>
+        </div>
+        <div class="control">
+          <label>Calculated summary</label>
+          <div class="row" style="justify-content:space-between; width:100%">
+            <div>
+              <div class="muted" style="font-weight:700">Energy / year</div>
+              <div id="sum-energy" style="font-weight:800">1.50&nbsp;GWh</div>
+            </div>
+            <div>
+              <div class="muted" style="font-weight:700">Platforms CAPEX (GST)</div>
+              <div id="sum-platforms" style="font-weight:800">A$2.41&nbsp;m</div>
+            </div>
+            <div>
+              <div class="muted" style="font-weight:700">Shared CAPEX</div>
+              <div id="sum-shared" style="font-weight:800">A$17.45&nbsp;m</div>
+            </div>
+            <div>
+              <div class="muted" style="font-weight:700">Total CAPEX</div>
+              <div id="sum-total" style="font-weight:800">A$19.86&nbsp;m</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Cost Breakdown -->
+  <section class="section card reveal" id="breakdown">
+    <h2>Detailed Cost Breakdown</h2>
+    <p class="muted">Each platform (10×10 m) has 28 solar panels, HDPE (High Density Polyethylene) float system, and marine-grade electrical connections.</p>
+
+    <div class="table-wrap" role="region" aria-label="Per platform cost table">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Base Cost (A$)</th>
+            <th>Total + GST (A$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Solar panels (12.74&nbsp;kW)</td>
+            <td>19,110</td>
+            <td>21,021</td>
+          </tr>
+          <tr>
+            <td>HDPE float + aluminium frame</td>
+            <td>8,500</td>
+            <td>9,350</td>
+          </tr>
+          <tr>
+            <td>Electrical links</td>
+            <td>1,600</td>
+            <td>1,760</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Per Platform Total</td>
+            <td>29,210</td>
+            <td>≈&nbsp;32,100</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="margin-top:12px">
+      <h3 style="margin:.4rem 0">Shared infrastructure:</h3>
+      <ul>
+        <li>Submarine cable: A$4.29&nbsp;million</li>
+        <li>HDD under-beach drilling: A$1.65&nbsp;million</li>
+        <li>Anchoring system: A$0.22&nbsp;million</li>
+        <li>Logistics &amp; transport: A$0.44&nbsp;million</li>
+        <li>Monitoring system: A$0.05&nbsp;million</li>
+        <li>Central battery (16&nbsp;MWh): A$11&nbsp;million</li>
+      </ul>
+    </div>
+
+    <div class="chart-card" style="margin-top:12px">
+      <canvas id="costChart" aria-label="CAPEX breakdown" role="img"></canvas>
+      <div class="chart-legend">
+        <span class="chip"><span class="dot" style="background:#fb7185"></span>Platforms (GST)</span>
+        <span class="chip"><span class="dot" style="background:#22d3ee"></span>Shared CAPEX</span>
+        <span class="chip"><span class="dot" style="background:#34d399"></span>Total</span>
+      </div>
+    </div>
+
+    <p class="note">Notes: Per-platform totals show 10% GST. Figures are indicative for concept design and subject to supplier quotes, shipping, and exchange rates.</p>
+  </section>
+
+  <!-- Maintenance, Funding, and Long-Term Value -->
+  <section class="section card reveal" id="value">
+    <h2>Maintenance, Funding, and Long-Term Value</h2>
+
+    <p>The community will handle cleaning, maintenance, and small repairs with support from technicians.</p>
+    <ul>
+      <li>Panels cleaned monthly</li>
+      <li>Anchors checked twice a year</li>
+      <li>Battery serviced every five years</li>
+    </ul>
+
+    <p>Old floats and panels will be recycled under a recycling programme.</p>
+    <p>Battery and electronic waste will follow Queensland’s environmental disposal standards.</p>
+
+    <p>The project may qualify for funding from:</p>
+    <ul>
+      <li>ARENA (Australian Renewable Energy Agency)</li>
+      <li>TSRA (Torres Strait Regional Authority)</li>
+      <li>Ergon Energy Remote Community Grant</li>
+    </ul>
+
+    <p>Once complete, the system can save A$500k–700k per year by replacing diesel fuel imports. This makes the project financially sustainable and environmentally friendly for Saibai Island.</p>
+  </section>
+
+  <!-- Summary Insights -->
+  <section class="section card reveal" id="summary">
+    <h2>Summary Insights</h2>
+    <p>
+      With <strong id="sum-platforms-kpi">75</strong> floating solar platforms and a <strong>16&nbsp;MWh</strong> battery,
+      Saibai Island can generate over <strong id="sum-energy-kpi">1.50&nbsp;GWh</strong> annually, reducing diesel dependence
+      and delivering estimated savings of <strong id="sum-saving-kpi">A$600,000</strong> per year.
+    </p>
+    <p class="muted">Figures are indicative and subject to refinement during detailed design and procurement.</p>
+  </section>
+
+</main>
+
+<script>
+/* ===== Theme (optional) ===== */
+const key='saibai-theme'; const saved = localStorage.getItem(key);
+if(saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ===== Utilities ===== */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const toMoney = n => 'A$' + n.toLocaleString('en-AU', {maximumFractionDigits:0});
+const toShortM = n => 'A$' + (n/1e6).toFixed(2) + ' m';
+const toGWhNum = kwh => (kwh/1e6);
+const toGWhText = g => g.toFixed(2) + ' GWh';
+
+/* ===== Assumptions ===== */
+const GST_PER_PLATFORM = 32100;
+const ENERGY_PER_PLATFORM_YEAR_KWH = 20000;
+const SHARED_CAPEX = 17_450_000;
+const SAVING_PER_YEAR = 600_000;
+
+/* ===== KPI Count-up ===== */
+function animateValue(el, from, to, dur, fmt){
+  const start = performance.now();
+  function step(t){
+    const p = Math.min(1, (t - start) / dur);
+    const v = from + (to - from) * (1 - Math.pow(1 - p, 3));
+    el.innerHTML = fmt(v);
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function parseNumber(text){ return Number(String(text).replace(/[^\d.]/g,'')) || 0; }
+
+/* ===== Calculator wiring ===== */
+const range = $('#range');
+const numInput = $('#platformCount');
+
+function syncInputs(v){ range.value = v; numInput.value = v; }
+
+function recalc(animate=true){
+  const n = parseInt(range.value, 10);
+  const energyKWh = n * ENERGY_PER_PLATFORM_YEAR_KWH;
+  const energyG = toGWhNum(energyKWh);
+  const platformsCapex = n * GST_PER_PLATFORM;
+  const totalCapex = platformsCapex + SHARED_CAPEX;
+
+  if(animate){
+    animateValue($('#kpi-platforms'), parseNumber($('#kpi-platforms').textContent), n, 700, v => Math.round(v).toString());
+    animateValue($('#kpi-energy'), parseNumber($('#kpi-energy').textContent), energyG, 900, v => toGWhText(v));
+    animateValue($('#kpi-saving'), parseNumber($('#kpi-saving').textContent), SAVING_PER_YEAR, 900, v => toMoney(v));
+  }else{
+    $('#kpi-platforms').textContent = n.toString();
+    $('#kpi-energy').innerHTML = toGWhText(energyG).replace(' ', '&nbsp;');
+    $('#kpi-saving').textContent = toMoney(SAVING_PER_YEAR);
+  }
+
+  $('#sum-energy').innerHTML = toGWhText(energyG).replace(' ', '&nbsp;');
+  $('#sum-platforms').textContent = toShortM(platformsCapex);
+  $('#sum-shared').textContent = toShortM(SHARED_CAPEX);
+  $('#sum-total').textContent = toShortM(totalCapex);
+
+  $('#sum-platforms-kpi').textContent = n.toString();
+  $('#sum-energy-kpi').innerHTML = toGWhText(energyG).replace(' ', '&nbsp;');
+  $('#sum-saving-kpi').textContent = toMoney(SAVING_PER_YEAR);
+
+  drawBars(platformsCapex, SHARED_CAPEX, totalCapex);
+}
+
+range.addEventListener('input', ()=>{ syncInputs(range.value); recalc(true); });
+numInput.addEventListener('input', ()=>{
+  let v = parseInt(numInput.value || '0',10);
+  if(isNaN(v)) v = 75;
+  v = Math.max(parseInt(numInput.min,10), Math.min(parseInt(numInput.max,10), v));
+  syncInputs(v); recalc(true);
+});
+
+/* ===== Bars chart (Canvas, no libs) — fixed top clipping & labels ===== */
+function drawBars(platforms, shared, total){
+  const c = document.getElementById('costChart');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const clientW = c.clientWidth || 640;
+  const H = 320;                         // a bit taller for headroom
+  c.width = clientW * devicePixelRatio;
+  c.height = H * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const padL=64, padR=24, padT=40;      // extra top padding fixes clipped labels
+  const baseY = H-48;
+  const max = Math.max(platforms, shared, total) * 1.15;
+
+  // clear + grid
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--line');
+  [baseY, baseY-60, baseY-120, baseY-180].forEach(y=>{ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(clientW-padR,y);ctx.stroke();});
+
+  // bars
+  const captions = ['Platforms','Shared','Total']; // short captions (legend has full)
+  const vals = [platforms, shared, total];
+  const bw = Math.min(160, Math.max(110, (clientW - padL - padR) / 3 - 40));
+  const gap = Math.max(40, (clientW - padL - padR - bw*3)/2);
+  let x = padL;
+
+  vals.forEach((v,i)=>{
+    const h = Math.max(2,(v/max) * (baseY - padT));
+    const y = baseY - h;
+    const r = 10;
+
+    // gradient per bar
+    const grad = ctx.createLinearGradient(0, y, 0, baseY);
+    if(i===0){ grad.addColorStop(0, '#fb7185'); grad.addColorStop(1, '#fca5a5'); }
+    if(i===1){ grad.addColorStop(0, '#22d3ee'); grad.addColorStop(1, '#a5f3fc'); }
+    if(i===2){ grad.addColorStop(0, '#34d399'); grad.addColorStop(1, '#86efac'); }
+
+    // rounded bar
+    ctx.beginPath();
+    ctx.moveTo(x, y+r);
+    ctx.arcTo(x, y, x+r, y, r);
+    ctx.lineTo(x+bw-r, y);
+    ctx.arcTo(x+bw, y, x+bw, y+r, r);
+    ctx.lineTo(x+bw, baseY);
+    ctx.lineTo(x, baseY);
+    ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+
+    // values (never closer than 8px to top)
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink');
+    ctx.font = 'bold 14px system-ui'; ctx.textAlign='center';
+    const labelY = Math.max(padT+8, y - 8);
+    ctx.fillText(toShortM(v), x + bw/2, labelY);
+
+    // x captions
+    ctx.font = '12px system-ui';
+    ctx.fillText(captions[i], x + bw/2, baseY + 18);
+
+    x += bw + gap;
+  });
+}
+window.addEventListener('resize', () => recalc(false));
+
+/* ===== Scroll reveal ===== */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+  });
+},{threshold:.12});
+revealEls.forEach(el=>io.observe(el));
+
+/* ===== Subnav active tab on scroll ===== */
+const tabs = $$('.tab[data-nav]');
+const sections = tabs.map(t => document.querySelector(t.getAttribute('href')));
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id = '#' + e.target.id;
+      tabs.forEach(t=>t.classList.toggle('active', t.getAttribute('href')===id));
+      history.replaceState(null,'',id);
+    }
+  });
+},{rootMargin:'-50% 0px -45% 0px', threshold:0});
+sections.forEach(s=>obs.observe(s));
+
+/* Init */
+recalc(false);
+</script>
+</body>
+</html>

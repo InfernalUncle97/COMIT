@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Energy Incorporated — Implementation Plan</title>
+<meta name="color-scheme" content="light dark">
+<style>
+  :root{
+    --bg:#f3f8fc; --ink:#0f172a; --muted:#475569; --line:#e6eef5; --panel:#ffffff;
+    --sea:#0ea5e9; --deep:#2563eb; --reef:#14b8a6; --sun:#f59e0b; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(15,23,42,.08);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1220; --ink:#e7eefc; --muted:#a9b4c9; --line:#24314f; --panel:#0f1730;
+    --sea:#22d3ee; --deep:#2563eb; --reef:#34d399; --sun:#fbbf24; --rose:#fb7185;
+    --shadow:0 6px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--sea);text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:20px}
+  html{scroll-behavior:smooth}
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 15% -100px, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(90deg,var(--sea),var(--deep));
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow);padding:80px 20px;text-align:center;position:relative;overflow:hidden;
+  }
+  .hero h1{margin:0;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:.5px;font-weight:800}
+
+  /* ===== Sticky subnav tabs (same pattern as your cost page) ===== */
+  .subnav{
+    position:sticky; top:0; z-index:40;
+    background:linear-gradient(90deg,var(--sea),var(--deep));
+    border-bottom:1px solid rgba(255,255,255,.25);
+    box-shadow:var(--shadow);
+  }
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:12px 18px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800}
+  .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#6ee7b7,#22d3ee);border:1px solid rgba(255,255,255,.6)}
+  .tab{
+    display:inline-block;background:rgba(255,255,255,.14); color:#fff; font-weight:800;
+    padding:.55rem .9rem; border-radius:999px; border:1px solid rgba(255,255,255,.45)
+  }
+  .tab:hover{background:rgba(255,255,255,.2)}
+  .tab.active{background:#fff;color:#0c2440}
+
+  /* ===== Sections ===== */
+  .section{margin-top:40px;padding:40px;border-radius:16px;background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .section h2{font-size:1.8rem;margin-top:0;color:var(--deep);border-bottom:3px solid var(--sea);display:inline-block;padding-bottom:6px}
+  .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+  .grid.rev{grid-template-columns:.9fr 1.1fr}
+  .img{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .img img{width:100%;display:block;height:auto}
+  .muted{color:var(--muted)}
+  .section ul{margin-top:.8rem;padding-left:1.4rem}
+  .section li{margin:.4rem 0}
+
+  /* Animation */
+  [data-animate]{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+  [data-animate].visible{opacity:1;transform:none;}
+
+  /* Footer */
+  footer{
+    margin-top:80px;padding:40px 20px;text-align:center;background:linear-gradient(90deg,var(--reef),var(--sea));
+    color:#fff;font-weight:500;letter-spacing:.3px;
+  }
+  footer a{color:#fff;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Implementation Plan</h1>
+</header>
+
+<!-- Sticky subnav -->
+<nav class="subnav" aria-label="Sections">
+  <div class="wrap tabs">
+    <span class="brand"><span class="logo" aria-hidden="true"></span> Community Energy — Saibai</span>
+    <a class="tab" data-nav href="#intro">Overview</a>
+    <a class="tab" data-nav href="#construction">Construction &amp; Training</a>
+    <a class="tab" data-nav href="#stages">Installation Stages</a>
+    <a class="tab" data-nav href="#ops">Operation &amp; Maintenance</a>
+    <a class="tab" data-nav href="#evaluation">Evaluation</a>
+    <a class="tab" data-nav href="#future">Future &amp; Ownership</a>
+    <a class="tab" data-nav href="#impact">Long-Term Impact</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- Overview -->
+  <section class="section grid" id="intro" data-animate>
+    <figure class="img">
+      <img src="impl1.png" alt="Figure 1 https://www.corexta.com/project-implementation-plan/">
+      <figcaption>Figure 1 https://www.corexta.com/project-implementation-plan/</figcaption>
+    </figure>
+    <div>
+      <h2>Implementation Plan</h2>
+      <p>The floating solar project will be built step by step with help from the Saibai Island community. The plan focuses on teaching local people how to build, maintain, and manage the system over time, creating jobs and skills in the community.</p>
+    </div>
+  </section>
+
+  <!-- Construction & Community Training -->
+  <section class="section grid rev" id="construction" data-animate>
+    <div>
+      <h2>Construction & Community Training</h2>
+      <p>The system will use 10×10 m floating platforms made from HDPE (High-Density Polyethylene) with solar panels mounted on top. Construction will happen close to the shore, where the platforms can be assembled and pushed into the water.</p>
+      <p>Local workers can help assemble and anchor the platforms on the water. They will receive basic training on how to:</p>
+      <ul>
+        <li>Assemble and connect the floats, frames, and panels</li>
+        <li>Install waterproof cables and mooring ropes</li>
+        <li>Monitor energy data and maintain the system</li>
+      </ul>
+      <p>Training will be done through workshops with step-by-step demonstrations. This helps create local skills for long-term maintenance.</p>
+    </div>
+    <figure class="img">
+      <img src="impl2.png" alt="An AI-generated 'Community maintaining solar panel on Saibai Island'">
+      <figcaption>An AI-generated “Community maintaining solar panel on Saibai Island”</figcaption>
+    </figure>
+  </section>
+
+  <!-- Installation Stages -->
+  <section class="section" id="stages" data-animate>
+    <h2>Installation Stages</h2>
+    <p>The system will be built and expanded over several years.</p>
+    <ul>
+      <li>First Year: 20 floating platforms will be installed and main infrastructure (battery, Underwater Cable, Anchoring points and etc) will be installed</li>
+      <li>Second Year: Another 20 Platforms will be added</li>
+      <li>Third Year: Another 20 platforms will be added (the number may vary depending on demand)</li>
+      <li>Future years: Additional floating platforms will be added based on demand.</li>
+    </ul>
+    <p>Over time, the total number of platforms may be reduced. As efficiency of solar panels improves and battery system expected to be cheaper, the same amount of energy could be produced with fewer platforms.</p>
+    <p>This flexible plan allows the system to grow or adjust based on future technology and community needs.</p>
+  </section>
+
+  <!-- Operation & Maintenance -->
+  <section class="section grid" id="ops" data-animate>
+    <div>
+      <h2>Operation and Maintenance</h2>
+      <p>After installation, the system will be managed by trained local operators.</p>
+      <ul>
+        <li>Regularly cleaning the solar panels</li>
+        <li>Checking anchors and cables</li>
+        <li>Using weather sensors and a 4G data logger to monitor performance</li>
+        <li>Detaching and reattaching platforms when needed</li>
+        <li>Relocates platforms</li>
+      </ul>
+      <p>If a platform or cable is damaged, it can be easily repaired or replaced without affecting the entire system.</p>
+      <p>This project will also create new job opportunities on the island.</p>
+    </div>
+    <figure class="img">
+      <img src="impl3.png" alt="An AI-generated 'A male maintains solar panel'">
+      <figcaption>An AI-generated “A male maintains solar panel”</figcaption>
+    </figure>
+  </section>
+
+  <!-- Evaluation -->
+  <section class="section grid rev" id="evaluation" data-animate>
+    <figure class="img">
+      <img src="impl5.png" alt="An AI-generated 'A male maintaining Floating Solar panel'">
+      <figcaption>An AI-generated “A male maintaining Floating Solar panel”</figcaption>
+    </figure>
+    <div>
+      <h2>Evaluation</h2>
+      <p>The project’s success will be measured through several key indicators:</p>
+      <ul>
+        <li>The amount of energy generated each month</li>
+        <li>The number of diesel generators replaced</li>
+        <li>The reduction in fuel use and carbon emission</li>
+        <li>Community feedback and satisfaction levels</li>
+        <li>The number of local jobs created during and after construction</li>
+      </ul>
+      <p>Reports will be shared with local authorities and the Torres Strait Island Regional Council (TSIRC) every six months.</p>
+    </div>
+  </section>
+
+  <!-- Future & Ownership + Long-Term Impact -->
+  <section class="section grid" id="future" data-animate>
+    <div>
+      <h2>Future & Ownership</h2>
+      <p>Once complete, the project will supply most of Saibai Island’s electricity needs.</p>
+      <p>The community will own and manage the solar system with support from government agencies.</p>
+      <p>Because the design is modular, new platforms can be added easily in the future.</p>
+      <p>If any part breaks, replacement floats or cables can be installed quickly without removing the whole system.</p>
+    </div>
+    <div id="impact">
+      <h2>Long-Term Impact</h2>
+      <ul>
+        <li>Clean, renewable power and less pollution</li>
+        <li>New local jobs and training opportunities</li>
+        <li>Lower energy costs over time</li>
+        <li>Better energy security during storms and power outages</li>
+        <li>Model project for other Torres Strait and remote island communities</li>
+        <li>More reliable electricity supply</li>
+      </ul>
+      <p>Figure 1 https://www.corexta.com/project-implementation-plan/</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 Open Energy Incorporated — Floating Solar for Saibai Island
+</footer>
+
+<script>
+  // Theme persistence
+  const key='saibai-theme';
+  const saved=localStorage.getItem(key);
+  if(saved) document.documentElement.setAttribute('data-theme',saved);
+
+  // Scroll reveal animations
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  },{threshold:.1});
+  document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
+
+  // Subnav active tab highlighting (same behaviour as your cost page)
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const tabs = $$('.tab[data-nav]');
+  const sections = tabs.map(t => document.querySelector(t.getAttribute('href')));
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = '#' + e.target.id;
+        tabs.forEach(t=>t.classList.toggle('active', t.getAttribute('href')===id));
+        history.replaceState(null,'',id);
+      }
+    });
+  },{rootMargin:'-50% 0px -45% 0px', threshold:0});
+  sections.forEach(s=>s && obs.observe(s));
+</script>
+</body>
+</html>
